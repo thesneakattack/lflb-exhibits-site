@@ -72,6 +72,8 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('wave/docs') => base_path('wave/docs'),
+        public_path('assets') => env('LFLB_ASSETS_PATH', storage_path('app/lflbassets')),
+
     ],
 
 ];
