@@ -1,0 +1,49 @@
+.fi-btn{
+    @apply text-2xl;
+}
+
+.fi-btn.fi-btn-size-md{
+    @apply px-4;
+}
+
+.fi-btn.fi-btn-size-lg{
+    @apply px-5 py-3 text-base;
+}
+
+.fi-btn.fi-btn-size-xl{
+    @apply px-6 py-4 text-base;
+}
+
+.fi-btn.fi-color-secondary{
+    @apply inline-flex items-center justify-center gap-3 font-medium text-blue-800 duration-200 bg-blue-100 hover:bg-blue-200 focus:ring-2 focus:ring-offset-2 focus:ring-blue-200;
+}
+
+label{
+    @apply space-x-1 text-sm leading-none;
+}
+
+.form-control{
+    @apply w-full form-input;
+  }
+
+/****** Form Input CLASSES **********/
+
+.fi-input-wrp {
+  @apply rounded-none;
+}
+
+.form-input, .form-textarea, .form-select {
+    @apply px-3 py-2 text-base leading-normal transition duration-150 ease-in-out bg-white border rounded-md appearance-none border-zinc-400 focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-blue-500 focus:border-blue-400;
+}
+
+.fi-btn{
+  @apply font-medium;
+}
+
+.form-select{
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%239fa6b2' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: right .5rem center;
+    background-size: 1.5em 1.5em;
+    padding:.5rem 2.5rem .5rem .75rem;
+    background-repeat: no-repeat;
+}

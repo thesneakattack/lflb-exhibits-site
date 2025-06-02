@@ -1,0 +1,4 @@
+services:
+  web:
+    volumes:
+      - ../../lflbassets:/var/www/html/lflbassets:cached
