@@ -20,10 +20,15 @@
 >
     <div class="mx-auto md:px-8 max-w-7xl xl:px-5">
         <div class="relative z-30 flex items-center justify-between h-24 md:space-x-6">
-            <div class="inline-flex md:pl-0 pl-7">
+            <div class="inline-flex space-x-3 md:pl-0 pl-7">
                 <a href="{{ route("home") }}" class="flex items-center justify-center space-x-3 text-blue-500 transition-all duration-1000 ease-out transform">
-                    <x-logo class="w-auto h-8"></x-logo>
+                    <x-logo class="w-auto h-9"></x-logo>
                 </a>
+                <input
+                    type="text"
+                    placeholder="Search…"
+                    class="w-64 {{-- fixed width on desktop --}} px-4 py-2 {{-- horizontal & vertical padding --}} border border-zinc-300 {{-- light gray border --}} rounded-full {{-- pill shape --}} bg-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow duration-150 shadow-sm hover:shadow-md"
+                />
             </div>
             <div class="flex justify-end pr-6 md:hidden md:pr-0">
                 <button
@@ -50,13 +55,8 @@
                 </button>
             </div>
 
-            <div class="relative z-30 items-center justify-center flex-shrink-0 hidden h-full space-x-3 text-sm md:flex">
+            <div class="relative z-30 items-center justify-start flex-shrink-0 hidden h-full space-x-3 text-sm md:flex">
                 @if (auth()->guest())
-                    <input
-                        type="text"
-                        placeholder="Search…"
-                        class="w-64 {{-- fixed width on desktop --}} px-4 py-2 {{-- horizontal & vertical padding --}} border border-zinc-300 {{-- light gray border --}} rounded-full {{-- pill shape --}} bg-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow duration-150 shadow-sm hover:shadow-md"
-                    />
                     <!-- <div class="overflow-hidden rounded-full">
                         <x-button href="{{ route('login') }}" tag="a" color="secondary" size="md" >
                             Sign in
@@ -76,7 +76,7 @@
 
             <nav
                 :class="{ 'hidden md:flex relative' : !mobileMenuOpen, 'md:flex absolute md:relative pointer-events-none md:pointer-events-auto  pt-24 md:pt-0' : mobileMenuOpen }"
-                class="top-0 left-0 z-20 w-full h-screen md:h-auto justify-stretch md:justify-end"
+                class="top-0 left-0 z-20 w-full h-screen md:w-auto md:h-auto justify-stretch md:justify-end"
                 x-cloak
             >
                 <div
@@ -119,19 +119,22 @@
                                     if (isMobileView) {
                                         navigationMenuOpen = ! navigationMenuOpen
                                         navigationMenuReposition($el)
-                                        navigationMenu = 'platform'
+                                        navigationMenu = 'topic'
                                     }
                                 "
-                                @mouseover="if(!isMobileView){ navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='platform'; }"
+                                @mouseover="if(!isMobileView){ navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='topic'; }"
                                 @mouseleave="navigationMenuLeave()"
                             >
                                 <button
-                                    :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='platform', 'hover:text-zinc-900' : navigationMenu!='platform' }"
+                                    :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='topic', 'hover:text-zinc-900' : navigationMenu!='topic' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:w-auto md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-max focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <span>Platform</span>
+                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                        <span>Topic</span>
+                                    </a>
+
                                     <svg
-                                        :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'platform' }"
+                                        :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'topic' }"
                                         class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -152,19 +155,21 @@
                                     if (isMobileView) {
                                         navigationMenuOpen = ! navigationMenuOpen
                                         navigationMenuReposition($el)
-                                        navigationMenu = 'resources'
+                                        navigationMenu = 'timeline'
                                     }
                                 "
-                                @mouseover="if(!isMobileView){ navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='resources'; }"
+                                @mouseover="if(!isMobileView){ navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='timeline'; }"
                                 @mouseleave="navigationMenuLeave()"
                             >
                                 <button
-                                    :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='resources', 'hover:text-zinc-900' : navigationMenu!='resources' }"
+                                    :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='timeline', 'hover:text-zinc-900' : navigationMenu!='timeline' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <span>Resources</span>
+                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                        <span>Timeline</span>
+                                    </a>
                                     <svg
-                                        :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'resources' }"
+                                        :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'timeline' }"
                                         class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -179,22 +184,94 @@
                                     </svg>
                                 </button>
                             </li>
-                            <li class="md:px-0.5 md:w-auto w-full">
-                                <a
-                                    href="/pricing"
-                                    class="inline-flex items-center justify-start w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-zinc-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none hover:bg-zinc-100 group"
+                            <li
+                                class="md:px-0.5 md:w-auto w-full"
+                                x-on:click="
+                                    if (isMobileView) {
+                                        navigationMenuOpen = ! navigationMenuOpen
+                                        navigationMenuReposition($el)
+                                        navigationMenu = 'location'
+                                    }
+                                "
+                                @mouseover="if(!isMobileView){ navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='location'; }"
+                                @mouseleave="navigationMenuLeave()"
+                            >
+                                <button
+                                    :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='location', 'hover:text-zinc-900' : navigationMenu!='location' }"
+                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    Pricing
-                                </a>
+                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                        <span>Location</span>
+                                    </a>
+                                    <svg
+                                        :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'location' }"
+                                        class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        aria-hidden="true"
+                                    >
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
                             </li>
-                            <li class="md:px-0.5 md:w-auto w-full">
-                                <a
-                                    href="/blog"
-                                    class="inline-flex items-center justify-start w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-zinc-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none hover:bg-zinc-100 group"
+                            <li
+                                class="md:px-0.5 md:w-auto w-full"
+                                x-on:click="
+                                    if (isMobileView) {
+                                        navigationMenuOpen = ! navigationMenuOpen
+                                        navigationMenuReposition($el)
+                                        navigationMenu = 'biography'
+                                    }
+                                "
+                                @mouseover="if(!isMobileView){ navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='biography'; }"
+                                @mouseleave="navigationMenuLeave()"
+                            >
+                                <button
+                                    :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='biography', 'hover:text-zinc-900' : navigationMenu!='biography' }"
+                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    Blog
-                                </a>
+                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                        <span>Biography</span>
+                                    </a>
+                                    <svg
+                                        :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'biography' }"
+                                        class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        aria-hidden="true"
+                                    >
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
                             </li>
+                            {{--
+                                <li class="md:px-0.5 md:w-auto w-full">
+                                <a
+                                href="/pricing"
+                                class="inline-flex items-center justify-start w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-zinc-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none hover:bg-zinc-100 group"
+                                >
+                                Pricing
+                                </a>
+                                </li>
+                                <li class="md:px-0.5 md:w-auto w-full">
+                                <a
+                                href="/blog"
+                                class="inline-flex items-center justify-start w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-zinc-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none hover:bg-zinc-100 group"
+                                >
+                                Blog
+                                </a>
+                                </li>
+                            --}}
                             @if (auth()->guest())
                                 <li class="md:px-0.5 md:w-auto w-full md:hidden block px-6 py-2">
                                     <x-button href="{{ route('login') }}" tag="a" color="gray" size="md" class="w-full">Sign in</x-button>
@@ -220,12 +297,12 @@
                         x-transition:leave-end="opacity-0 scale-[0.9] translate-y-11"
                         @mouseover="navigationMenuClearCloseTimeout()"
                         @mouseleave="navigationMenuOpen=false"
-                        :class="{ 'translate-y-24 md:translate-y-11 -mt-1.5' : navigationMenu  == 'resources', 'translate-y-9 md:translate-y-11' : navigationMenu  == 'platform' }"
+                        :class="{ 'translate-y-24 md:translate-y-11 -mt-1.5' : navigationMenu  == 'timeline' || navigationMenu == 'location' || navigationMenu == 'biography', 'translate-y-9 md:translate-y-11' : navigationMenu  == 'topic' }"
                         class="absolute top-0 w-full pt-4 duration-200 ease-out -translate-x-1/2 md:w-auto md:mt-0"
                         x-cloak
                     >
                         <div class="flex justify-center w-full h-auto overflow-hidden bg-white border shadow-sm md:w-auto md:rounded-2xl border-neutral-200/70">
-                            <div x-show="navigationMenu == 'platform'" class="flex flex-col items-stretch justify-center w-full p-3 lg:flex-row gap-x-3 max-w-7xl">
+                            <div x-show="navigationMenu == 'topic'" class="flex flex-col items-stretch justify-center w-full p-3 lg:flex-row gap-x-3 max-w-7xl">
                                 <div class="relative flex-col items-center justify-center hidden w-48 h-full p-10 text-center bg-blue-600 xl:flex rounded-xl">
                                     <x-logo class="text-white h-7"></x-logo>
                                     <h3 class="z-30 mt-1 mt-4 text-xs font-normal text-blue-200">Start building your next great idea.</h3>
@@ -265,7 +342,39 @@
                                     </a>
                                 </div>
                             </div>
-                            <div x-show="navigationMenu == 'resources'" class="flex items-stretch justify-center w-full p-3">
+                            <div x-show="navigationMenu == 'timeline'" class="flex items-stretch justify-center w-full p-3">
+                                <div class="w-full md:w-72">
+                                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
+                                        <span class="block mb-1 font-medium text-black">Documentation</span>
+                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                    </a>
+                                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
+                                        <span class="block mb-1 font-medium text-black">Videos</span>
+                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                    </a>
+                                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
+                                        <span class="block mb-1 font-medium text-black">Blog</span>
+                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div x-show="navigationMenu == 'location'" class="flex items-stretch justify-center w-full p-3">
+                                <div class="w-full md:w-72">
+                                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
+                                        <span class="block mb-1 font-medium text-black">Documentation</span>
+                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                    </a>
+                                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
+                                        <span class="block mb-1 font-medium text-black">Videos</span>
+                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                    </a>
+                                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
+                                        <span class="block mb-1 font-medium text-black">Blog</span>
+                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div x-show="navigationMenu == 'biography'" class="flex items-stretch justify-center w-full p-3">
                                 <div class="w-full md:w-72">
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
                                         <span class="block mb-1 font-medium text-black">Documentation</span>
