@@ -33,7 +33,6 @@
         "alebatistella/duskapiconf": "^1.2",
         "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^8.0",
-        "laravel/sail": "^1.43",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "6.4.0|^7.0|^8.1",
         "pestphp/pest": "^3.4",
@@ -70,14 +69,14 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi",
-            "@php artisan db:seed",
-            "@php artisan livewire:publish --assets"
+            "@php artisan db:seed"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover",
             "@php artisan storage:link",
-            "@php artisan filament:upgrade"
+            "@php artisan filament:upgrade",
+            "@php artisan livewire:publish --assets"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",

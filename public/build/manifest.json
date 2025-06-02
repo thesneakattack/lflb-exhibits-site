@@ -4,15 +4,15 @@
     "src": "resources/css/filament/admin/theme.css",
     "isEntry": true
   },
-  "resources/themes/anchor/assets/css/app.css": {
-    "file": "assets/app-CSvAr6xy.css",
-    "src": "resources/themes/anchor/assets/css/app.css",
+  "resources/themes/anchor-cove/assets/css/app.css": {
+    "file": "assets/app-zULIHt3h.css",
+    "src": "resources/themes/anchor-cove/assets/css/app.css",
     "isEntry": true
   },
-  "resources/themes/anchor/assets/js/app.js": {
-    "file": "assets/app-CaUPGaqM.js",
+  "resources/themes/anchor-cove/assets/js/app.js": {
+    "file": "assets/app-CuBpdYhA.js",
     "name": "app",
-    "src": "resources/themes/anchor/assets/js/app.js",
+    "src": "resources/themes/anchor-cove/assets/js/app.js",
     "isEntry": true
   }
 }
