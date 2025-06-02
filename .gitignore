@@ -46,3 +46,5 @@ resources/plugins/*
 #LFLB IGNORES
 !/storage/app/public/lflb-site
 !/storage/app/public/lflb-site/**/*
+
+!.gitignore
