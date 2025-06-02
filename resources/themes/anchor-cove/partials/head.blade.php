@@ -44,5 +44,5 @@
 @endif
 
 @filamentStyles
-@vite(['resources/themes/cove/assets/css/app.css', 'resources/themes/cove/assets/js/app.js'])
+@vite(['resources/themes/anchor-cove/assets/css/app.css', 'resources/themes/anchor-cove/assets/js/app.js'])
 @livewireStyles
