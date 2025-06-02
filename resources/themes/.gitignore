@@ -1,6 +1,7 @@
 # Ignore everything
-*
-*/
+# KEEP ALL THEME FILES IN THIS DIRECTORY
+#*
+# */
 
 # Do not ignore the .gitignore file
 !.gitignore
