@@ -63,6 +63,26 @@ return [
             ]) : [],
         ],
 
+        'lflb_exhibits_db' => [
+            'driver' => 'mysql',
+            'url' => env('LFLB_EXHIBITS_DATABASE_URL'),
+            'host' => env('LFLB_EXHIBITS_DB_HOST', '127.0.0.1'),
+            'port' => env('LFLB_EXHIBITS_DB_PORT', '3306'),
+            'database' => env('LFLB_EXHIBITS_DB_DATABASE', 'forge'),
+            'username' => env('LFLB_EXHIBITS_DB_USERNAME', 'forge'),
+            'password' => env('LFLB_EXHIBITS_DB_PASSWORD', ''),
+            'unix_socket' => env('LFLB_EXHIBITS_DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],        
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
