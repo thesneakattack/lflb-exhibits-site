@@ -1,0 +1,746 @@
+diff --git a/app/Models/LflbApp.php b/app/Models/LflbApp.php
+new file mode 100644
+index 0000000..99eae2a
+--- /dev/null
++++ b/app/Models/LflbApp.php
+@@ -0,0 +1,74 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Collection;
++use Illuminate\Database\Eloquent\Model;
++
++/**
++ * Class LflbApp
++ *
++ * @property int $id
++ * @property string|null $_oldid
++ * @property string $name
++ * @property string|null $orgId
++ * @property string|null $description
++ * @property string|null $image
++ * @property string|null $categories
++ * @property string|null $categories_old
++ * @property string|null $mapCenterAddress
++ * @property string|null $mapCenterAddressCoords_lat
++ * @property string|null $mapCenterAddressCoords_lng
++ * @property string|null $mainColor
++ * @property string|null $secondaryColor
++ * @property Carbon|null $created_at
++ * @property Carbon|null $updated_at
++ * @property Collection|LflbStory[] $lflb_stories
++ */
++class LflbApp extends Model
++{
++    protected $table = 'lflb_apps';
++
++    public $timestamps = false;
++
++    /**
++     * @var array
++     */
++    protected $casts = [
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    /**
++     * @var array
++     */
++    protected $fillable = [
++        '_oldid',
++        'name',
++        'orgId',
++        'description',
++        'image',
++        'categories',
++        'categories_old',
++        'mapCenterAddress',
++        'mapCenterAddressCoords_lat',
++        'mapCenterAddressCoords_lng',
++        'mainColor',
++        'secondaryColor',
++        'created_at',
++        'updated_at',
++    ];
++
++    /**
++     * @return \Illuminate\Database\Eloquent\Relations\HasMany
++     */
++    public function lflb_stories()
++    {
++        return $this->hasMany(LflbStory::class, 'app_id');
++    }
++}
+diff --git a/app/Models/LflbAsset.php b/app/Models/LflbAsset.php
+new file mode 100644
+index 0000000..95d0bdf
+--- /dev/null
++++ b/app/Models/LflbAsset.php
+@@ -0,0 +1,89 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Collection;
++use Illuminate\Database\Eloquent\Model;
++use Storage;
++
++/**
++ * Class LflbAsset
++ *
++ * @property int $id
++ * @property string|null $_oldid
++ * @property string|null $orgId
++ * @property string|null $link
++ * @property string|null $originalImage
++ * @property string $type
++ * @property string|null $text
++ * @property string|null $cleanText
++ * @property string|null $name
++ * @property string|null $caption
++ * @property string|null $tags
++ * @property string|null $thumbnail
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ * @property Collection|LflbStory[] $lflb_stories
++ */
++class LflbAsset extends Model
++{
++    protected $table = 'lflb_assets';
++
++    public $timestamps = false;
++
++    /**
++     * @var array
++     */
++    protected $casts = [
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    /**
++     * @var array
++     */
++    protected $fillable = [
++        '_oldid',
++        'orgId',
++        'link',
++        'originalImage',
++        'type',
++        'text',
++        'cleanText',
++        'name',
++        'caption',
++        'tags',
++        'thumbnail',
++        'created_at',
++        'updated_at',
++    ];
++
++    public function lflb_story_parts()
++    {
++        return $this->hasMany(LflbAssetLflbStory::class, 'asset_id');
++    }
++
++    public function lflb_stories()
++    {
++        return $this->belongsToMany(LflbStory::class, 'lflb_asset_lflb_story', 'asset_id', 'story_id')
++            ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')
++            ->withTimestamps();
++    }
++
++    public function get_date_for_humans_attribute()
++    {
++        return Carbon::parse($this->created_at)->diffForHumans();
++    }
++
++    public function file_url()
++    {
++        return $this->link
++            ? Storage::disk('lflbassets')->url($this->link)
++            : false;
++    }
++}
+diff --git a/app/Models/LflbAssetLflbStory.php b/app/Models/LflbAssetLflbStory.php
+new file mode 100644
+index 0000000..81b95d7
+--- /dev/null
++++ b/app/Models/LflbAssetLflbStory.php
+@@ -0,0 +1,61 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Model;
++
++/**
++ * Class LflbAssetLflbStory
++ *
++ * @property int $id
++ * @property string|null $_oldid
++ * @property int|null $asset_id
++ * @property int|null $story_id
++ * @property string|null $caption
++ * @property int|null $position
++ * @property string|null $annotations
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ * @property LflbAsset|null $lflb_asset
++ * @property LflbStory|null $lflb_story
++ */
++class LflbAssetLflbStory extends Model
++{
++    protected $table = 'lflb_asset_lflb_story';
++
++    public $timestamps = false;
++
++    protected $casts = [
++        'asset_id' => 'int',
++        'story_id' => 'int',
++        'position' => 'int',
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    protected $fillable = [
++        '_oldid',
++        'asset_id',
++        'story_id',
++        'caption',
++        'position',
++        'annotations',
++        'created_at',
++        'updated_at',
++    ];
++
++    public function lflb_asset()
++    {
++        return $this->belongsTo(LflbAsset::class, 'asset_id');
++    }
++
++    public function lflb_story()
++    {
++        return $this->belongsTo(LflbStory::class, 'story_id');
++    }
++}
+diff --git a/app/Models/LflbCategory.php b/app/Models/LflbCategory.php
+new file mode 100644
+index 0000000..8eb358e
+--- /dev/null
++++ b/app/Models/LflbCategory.php
+@@ -0,0 +1,94 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use App\Models\Pivots\PivotCategory;
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Collection;
++use Illuminate\Database\Eloquent\Model;
++use Storage;
++
++/**
++ * Class LflbCategory
++ *
++ * @property int $id
++ * @property string|null $_oldid
++ * @property string $title
++ * @property string|null $description
++ * @property string|null $coverPhoto
++ * @property string|null $sub_categories_old
++ * @property string|null $sub_categories
++ * @property string $featured
++ * @property string|null $introText
++ * @property string|null $bodyText
++ * @property string|null $mainImage
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ * @property Collection|LflbSubCategory[] $lflb_sub_categories
++ */
++class LflbCategory extends Model
++{
++    protected $table = 'lflb_categories';
++
++    public $timestamps = false;
++
++    protected $casts = [
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    protected $fillable = [
++        '_oldid',
++        'title',
++        'description',
++        'coverPhoto',
++        'sub_categories_old',
++        'sub_categories',
++        'featured',
++        'introText',
++        'bodyText',
++        'mainImage',
++        'created_at',
++        'updated_at',
++    ];
++
++    public function lflb_sub_categories()
++    {
++        return $this->hasMany(LflbSubCategory::class, 'category_id');
++    }
++
++    public function lflb_categories()
++    {
++        return $this->belongsToMany(LflbStory::class)->using(PivotCategory::class);
++    }
++
++    // custom code David F.
++    const STATUSES = [
++        'TRUE' => 'Yes',
++        'FALSE' => 'No',
++    ];
++
++    public function get_status_color_attribute()
++    {
++        return [
++            'TRUE' => 'green',
++            'FALSE' => 'red',
++        ][$this->featured] ?? 'cool-gray';
++    }
++
++    public function get_date_for_humans_attribute()
++    {
++        return Carbon::parse($this->created_at)->diffForHumans();
++    }
++
++    public function main_image_url()
++    {
++        return $this->mainImage
++            ? Storage::disk('lflbassets')->url($this->mainImage)
++            : false;
++    }
++}
+diff --git a/app/Models/LflbMetadatum.php b/app/Models/LflbMetadatum.php
+new file mode 100644
+index 0000000..a52fec6
+--- /dev/null
++++ b/app/Models/LflbMetadatum.php
+@@ -0,0 +1,60 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Model;
++
++/**
++ * Class LflbMetadatum
++ *
++ * @property int $id
++ * @property string $_oldid
++ * @property string|null $contributor
++ * @property string|null $creator
++ * @property string|null $description
++ * @property string|null $format
++ * @property string|null $identifier
++ * @property string|null $language
++ * @property string|null $publisher
++ * @property string|null $relation
++ * @property string|null $rights
++ * @property string|null $source
++ * @property string|null $subject
++ * @property string|null $type
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ */
++class LflbMetadatum extends Model
++{
++    protected $table = 'lflb_metadata';
++
++    public $timestamps = false;
++
++    protected $casts = [
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    protected $fillable = [
++        '_oldid',
++        'contributor',
++        'creator',
++        'description',
++        'format',
++        'identifier',
++        'language',
++        'publisher',
++        'relation',
++        'rights',
++        'source',
++        'subject',
++        'type',
++        'created_at',
++        'updated_at',
++    ];
++}
+diff --git a/app/Models/LflbStory.php b/app/Models/LflbStory.php
+new file mode 100644
+index 0000000..47714c1
+--- /dev/null
++++ b/app/Models/LflbStory.php
+@@ -0,0 +1,125 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Collection;
++use Illuminate\Database\Eloquent\Model;
++
++/**
++ * Class LflbStory
++ *
++ * @property int $id
++ * @property string|null $_oldid
++ * @property string $title
++ * @property int|null $app_id
++ * @property string|null $description
++ * @property string|null $image
++ * @property string|null $imageUrl
++ * @property string|null $categories_old
++ * @property string|null $categories
++ * @property string|null $startDay
++ * @property string|null $startMonth
++ * @property string|null $startYear
++ * @property string|null $endDay
++ * @property string|null $endMonth
++ * @property string|null $endYear
++ * @property string|null $locationName
++ * @property string|null $location_lat
++ * @property string|null $location_lng
++ * @property string|null $metaData
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ * @property LflbApp|null $lflb_app
++ * @property Collection|LflbAsset[] $lflb_assets
++ * @property Collection|LflbSubCategory[] $lflb_sub_categories
++ * @property Collection|LflbTag[] $lflb_tags
++ */
++class LflbStory extends Model
++{
++    protected $table = 'lflb_stories';
++
++    public $timestamps = false;
++
++    protected $casts = [
++        'app_id' => 'int',
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    protected $fillable = [
++        '_oldid',
++        'title',
++        'app_id',
++        'description',
++        'image',
++        'imageUrl',
++        'categories_old',
++        'categories',
++        'startDay',
++        'startMonth',
++        'startYear',
++        'endDay',
++        'endMonth',
++        'endYear',
++        'locationName',
++        'location_lat',
++        'location_lng',
++        'metaData',
++        'created_at',
++        'updated_at',
++    ];
++
++    public function lflb_app()
++    {
++        return $this->belongsTo(LflbApp::class, 'app_id');
++    }
++
++    public function lflb_assets()
++    {
++        return $this->belongsToMany(LflbAsset::class, 'lflb_asset_lflb_story', 'story_id', 'asset_id')
++            ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')
++            ->withTimestamps();
++    }
++
++    public function lflb_sub_categories()
++    {
++        return $this->belongsToMany(LflbSubCategory::class)
++            ->withPivot('id')
++            ->withTimestamps();
++    }
++
++    public function lflb_tags()
++    {
++        return $this->hasMany(LflbTag::class, 'story_id');
++    }
++
++    public function lflb_categories()
++    {
++        $collection = $this->lflbSubCategories;
++        $grouped = $collection->mapToGroups(function ($item, $key) {
++            return [$item->lflbCategory->title => $item];
++        });
++        // ->map(function ($group) {
++        //     return $group->all();
++        // })->all();
++
++        return $grouped;
++    }
++
++    public function get_date_for_humans_attribute()
++    {
++        return Carbon::parse($this->updated_at)->diffForHumans();
++    }
++
++    public function main_image_url()
++    {
++        return $this->image
++            ? Storage::disk('lflbassets')->url($this->image)
++            : false;
++    }
++}
+diff --git a/app/Models/LflbStoryLflbSubCategory.php b/app/Models/LflbStoryLflbSubCategory.php
+new file mode 100644
+index 0000000..ba207ed
+--- /dev/null
++++ b/app/Models/LflbStoryLflbSubCategory.php
+@@ -0,0 +1,49 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Model;
++
++/**
++ * Class LflbStoryLflbSubCategory
++ * 
++ * @property int $id
++ * @property int|null $lflb_sub_category_id
++ * @property int|null $lflb_story_id
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ * 
++ * @property LflbStory|null $lflb_story
++ * @property LflbSubCategory|null $lflb_sub_category
++ *
++ * @package App\Models
++ */
++class LflbStoryLflbSubCategory extends Model
++{
++	protected $table = 'lflb_story_lflb_sub_category';
++
++	protected $casts = [
++		'lflb_sub_category_id' => 'int',
++		'lflb_story_id' => 'int'
++	];
++
++	protected $fillable = [
++		'lflb_sub_category_id',
++		'lflb_story_id'
++	];
++
++	public function lflb_story()
++	{
++		return $this->belongsTo(LflbStory::class);
++	}
++
++	public function lflb_sub_category()
++	{
++		return $this->belongsTo(LflbSubCategory::class);
++	}
++}
+diff --git a/app/Models/LflbSubCategory.php b/app/Models/LflbSubCategory.php
+new file mode 100644
+index 0000000..087f189
+--- /dev/null
++++ b/app/Models/LflbSubCategory.php
+@@ -0,0 +1,91 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Collection;
++use Illuminate\Database\Eloquent\Model;
++use Storage;
++
++/**
++ * Class LflbSubCategory
++ *
++ * @property int $id
++ * @property string|null $_oldid
++ * @property int|null $category_id
++ * @property string $title
++ * @property string|null $stories
++ * @property string|null $stories_old
++ * @property string|null $subTitle
++ * @property string|null $mainImage
++ * @property int|null $position
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ * @property LflbCategory|null $lflb_category
++ * @property Collection|LflbStory[] $lflb_stories
++ */
++class LflbSubCategory extends Model
++{
++    protected $table = 'lflb_sub_categories';
++
++    public $timestamps = false;
++
++    protected $casts = [
++        'category_id' => 'int',
++        'position' => 'int',
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    protected $fillable = [
++        '_oldid',
++        'category_id',
++        'title',
++        'stories',
++        'stories_old',
++        'subTitle',
++        'mainImage',
++        'position',
++        'created_at',
++        'updated_at',
++    ];
++
++    public function lflb_category()
++    {
++        return $this->belongsTo(LflbCategory::class, 'category_id');
++    }
++
++    public function lflb_stories()
++    {
++        return $this->belongsToMany(LflbStory::class)
++            ->withPivot('id')
++            ->withTimestamps();
++    }
++
++    public function get_created_date_for_humans_attribute()
++    {
++        return Carbon::parse($this->created_at)->diffForHumans();
++    }
++
++    public function get_updated_date_for_humans_attribute()
++    {
++        return Carbon::parse($this->updated_at)->diffForHumans();
++    }
++
++    // Custom code David F.
++    public function story_ids()
++    {
++        return explode(',', $this->stories);
++    }
++
++    public function main_image_url()
++    {
++        return $this->mainImage
++            ? Storage::disk('lflbassets')->url($this->mainImage)
++            : false;
++    }
++}
+diff --git a/app/Models/LflbTag.php b/app/Models/LflbTag.php
+new file mode 100644
+index 0000000..1a0b221
+--- /dev/null
++++ b/app/Models/LflbTag.php
+@@ -0,0 +1,49 @@
++<?php
++
++/**
++ * Created by Reliese Model.
++ */
++
++namespace App\Models;
++
++use Carbon\Carbon;
++use Illuminate\Database\Eloquent\Model;
++
++/**
++ * Class LflbTag
++ *
++ * @property int $id
++ * @property string $_oldid
++ * @property int|null $story_id
++ * @property string|null $storyid
++ * @property string|null $value
++ * @property Carbon $created_at
++ * @property Carbon $updated_at
++ * @property LflbStory|null $lflb_story
++ */
++class LflbTag extends Model
++{
++    protected $table = 'lflb_tags';
++
++    public $timestamps = false;
++
++    protected $casts = [
++        'story_id' => 'int',
++        'created_at' => 'datetime',
++        'updated_at' => 'datetime',
++    ];
++
++    protected $fillable = [
++        '_oldid',
++        'story_id',
++        'storyid',
++        'value',
++        'created_at',
++        'updated_at',
++    ];
++
++    public function lflb_story()
++    {
++        return $this->belongsTo(LflbStory::class, 'story_id');
++    }
++}
