@@ -5,7 +5,7 @@ use function Laravel\Folio\name;
 
 name('topics');
 
-$stories = LflbStory::orderBy('created_at', 'DESC')->paginate(6);
+$stories = LflbStory::orderBy('updated_at', 'DESC')->paginate(6);
 
 $posts = \Wave\Post::orderBy('created_at', 'DESC')->paginate(6);
 $categories = \Wave\Category::all();

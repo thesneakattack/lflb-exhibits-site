@@ -87,10 +87,17 @@ class LflbStory extends Model
         return $this->hasMany('App\Models\LflbAssetLflbStory', 'story_id');
     }
 
+    // get all assets related to this story from the lflb_assets table
+    // using the pivot table lflb_asset_lflb_story
+    // with the pivot attributes: id, _oldid, caption, position, annotations
+    // and timestamps
+    // https://laravel.com/docs/9.x/eloquent-relationships#many-to-many
+    // https://laravel.com/docs/9.x/eloquent-relationships#defining-many-to-many-relationships
+
     public function lflb_assets()
     {
         return $this->belongsToMany(LflbAsset::class, 'lflb_asset_lflb_story', 'story_id', 'asset_id')
-            ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')
+            ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')->orderByPivot('position', 'asc')
             ->withTimestamps();
     }
 
