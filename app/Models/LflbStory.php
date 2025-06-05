@@ -79,6 +79,11 @@ class LflbStory extends Model
         return $this->belongsTo(LflbApp::class, 'app_id');
     }
 
+    public function lflb_story_parts()
+    {
+        return $this->hasMany('App\Models\LflbAssetLflbStory', 'story_id');
+    }    
+
     public function lflb_assets()
     {
         return $this->belongsToMany(LflbAsset::class, 'lflb_asset_lflb_story', 'story_id', 'asset_id')
