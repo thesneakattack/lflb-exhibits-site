@@ -32,6 +32,8 @@ use Storage;
  */
 class LflbAsset extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_assets';
 
     public $timestamps = false;

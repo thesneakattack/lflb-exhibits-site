@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LflbMetadatum extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_metadata';
 
     public $timestamps = false;

@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LflbAssetLflbStory extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_asset_lflb_story';
 
     public $timestamps = false;

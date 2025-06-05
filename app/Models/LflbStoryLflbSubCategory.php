@@ -11,39 +11,38 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class LflbStoryLflbSubCategory
- * 
+ *
  * @property int $id
  * @property int|null $lflb_sub_category_id
  * @property int|null $lflb_story_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
  * @property LflbStory|null $lflb_story
  * @property LflbSubCategory|null $lflb_sub_category
- *
- * @package App\Models
  */
 class LflbStoryLflbSubCategory extends Model
 {
-	protected $table = 'lflb_story_lflb_sub_category';
+    protected $connection = 'lflb_exhibits_db';
 
-	protected $casts = [
-		'lflb_sub_category_id' => 'int',
-		'lflb_story_id' => 'int'
-	];
+    protected $table = 'lflb_story_lflb_sub_category';
 
-	protected $fillable = [
-		'lflb_sub_category_id',
-		'lflb_story_id'
-	];
+    protected $casts = [
+        'lflb_sub_category_id' => 'int',
+        'lflb_story_id' => 'int',
+    ];
 
-	public function lflb_story()
-	{
-		return $this->belongsTo(LflbStory::class);
-	}
+    protected $fillable = [
+        'lflb_sub_category_id',
+        'lflb_story_id',
+    ];
 
-	public function lflb_sub_category()
-	{
-		return $this->belongsTo(LflbSubCategory::class);
-	}
+    public function lflb_story()
+    {
+        return $this->belongsTo(LflbStory::class);
+    }
+
+    public function lflb_sub_category()
+    {
+        return $this->belongsTo(LflbSubCategory::class);
+    }
 }

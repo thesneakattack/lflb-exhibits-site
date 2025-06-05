@@ -6,7 +6,7 @@
 
 namespace App\Models;
 
-use App\Models\Pivots\PivotCategory;
+use App\Models\Pivot\PivotCategory;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +32,8 @@ use Storage;
  */
 class LflbCategory extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_categories';
 
     public $timestamps = false;

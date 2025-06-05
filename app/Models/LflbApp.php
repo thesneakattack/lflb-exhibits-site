@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LflbApp extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_apps';
 
     public $timestamps = false;

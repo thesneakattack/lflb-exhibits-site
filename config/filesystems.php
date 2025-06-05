@@ -56,6 +56,13 @@ return [
             'throw' => false,
         ],
 
+        'lflbassets' => [
+            'driver' => 'local',
+            'root' => env('LFLB_ASSETS_PATH', storage_path('app/lflbassets')),
+            'url' => env('APP_URL').'/assets',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

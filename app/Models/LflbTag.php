@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LflbTag extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_tags';
 
     public $timestamps = false;

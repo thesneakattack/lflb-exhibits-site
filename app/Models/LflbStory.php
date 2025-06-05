@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 /**
  * Class LflbStory
@@ -41,6 +42,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LflbStory extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_stories';
 
     public $timestamps = false;
@@ -82,7 +85,7 @@ class LflbStory extends Model
     public function lflb_story_parts()
     {
         return $this->hasMany('App\Models\LflbAssetLflbStory', 'story_id');
-    }    
+    }
 
     public function lflb_assets()
     {

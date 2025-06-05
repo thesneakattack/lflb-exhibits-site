@@ -30,6 +30,8 @@ use Storage;
  */
 class LflbSubCategory extends Model
 {
+    protected $connection = 'lflb_exhibits_db';
+
     protected $table = 'lflb_sub_categories';
 
     public $timestamps = false;
