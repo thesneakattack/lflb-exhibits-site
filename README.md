@@ -1,3 +1,5 @@
+![Alt](https://repobeats.axiom.co/api/embed/a40d26860ccd9deda591d4977e92810f88c919b4.svg "Repobeats analytics image")
+
 <p align="center"><a href="https://devdojo.com/wave" target="_blank"><img src="https://cdn.devdojo.com/images/october2024/wave-logo.png" width="200"></a></p>
 
 <p align="center">
@@ -11,20 +13,20 @@ Wave is a SaaS framework, built with <a href="https://laravel.com">Laravel</a>, 
 
 Wave provides you with all the essential features found in many popular SaaS platforms, allowing you to quickly transform your idea into a profitable SaaS product. Here are a handful of features that Wave Provides:
 
- - <a href="https://devdojo.com/wave/docs/features/auth" target="_blank">Authentication</a>
- - <a href="https://devdojo.com/wave/docs/features/user-profiles" target="_blank">User Profiles</a>
- - <a href="https://devdojo.com/wave/docs/features/user-impersonations" target="_blank">User Impersonations</a>
- - <a href="https://devdojo.com/wave/docs/features/billing" target="_blank">Billing</a>
- - <a href="https://devdojo.com/wave/docs/features/subscription-plans" target="_blank">Subscription Plans</a>
- - <a href="https://devdojo.com/wave/docs/features/roles-permissions" target="_blank">Roles & Permissions</a>
- - <a href="https://devdojo.com/wave/docs/features/notifications" target="_blank">User Notifications</a>
- - <a href="https://devdojo.com/wave/docs/features/changelog" target="_blank">Changelog</a>
- - <a href="https://devdojo.com/wave/docs/features/blog" target="_blank">Blog</a>
- - <a href="https://devdojo.com/wave/docs/features/pages" target="_blank">Pages</a>
- - <a href="https://devdojo.com/wave/docs/features/api" target="_blank">API</a>
- - <a href="https://devdojo.com/wave/docs/features/admin" target="_blank">Admin</a>
- - <a href="https://devdojo.com/wave/docs/features/themes" target="_blank">Themes</a>
- - <a href="https://devdojo.com/wave/docs/features/plugins" target="_blank">Plugins</a>
+- <a href="https://devdojo.com/wave/docs/features/auth" target="_blank">Authentication</a>
+- <a href="https://devdojo.com/wave/docs/features/user-profiles" target="_blank">User Profiles</a>
+- <a href="https://devdojo.com/wave/docs/features/user-impersonations" target="_blank">User Impersonations</a>
+- <a href="https://devdojo.com/wave/docs/features/billing" target="_blank">Billing</a>
+- <a href="https://devdojo.com/wave/docs/features/subscription-plans" target="_blank">Subscription Plans</a>
+- <a href="https://devdojo.com/wave/docs/features/roles-permissions" target="_blank">Roles & Permissions</a>
+- <a href="https://devdojo.com/wave/docs/features/notifications" target="_blank">User Notifications</a>
+- <a href="https://devdojo.com/wave/docs/features/changelog" target="_blank">Changelog</a>
+- <a href="https://devdojo.com/wave/docs/features/blog" target="_blank">Blog</a>
+- <a href="https://devdojo.com/wave/docs/features/pages" target="_blank">Pages</a>
+- <a href="https://devdojo.com/wave/docs/features/api" target="_blank">API</a>
+- <a href="https://devdojo.com/wave/docs/features/admin" target="_blank">Admin</a>
+- <a href="https://devdojo.com/wave/docs/features/themes" target="_blank">Themes</a>
+- <a href="https://devdojo.com/wave/docs/features/plugins" target="_blank">Plugins</a>
 
 Be sure to view a list of <a href="https://devdojo.com/wave/docs/features/auth" target="_blank">all features here</a>.
 
@@ -47,7 +49,6 @@ The best way to support this project is to support us by subscribing to a <a hre
 We've also got a full video series on how you can setup, build, and configure Wave. 🍿 You can watch first few videos for free, and additional videos will require a [DevDojo Pro](https://devdojo.com/wave/pro) subscription. By subscribing to a [DevDojo Pro](https://devdojo.com/pro) subscription you will also be supporting the ongoing development of this project. It's a win win! 🙌
 
 [Click here to watch the Wave Video Course](https://devdojo.com/wave/videos).
-
 
 ## Documentation
 

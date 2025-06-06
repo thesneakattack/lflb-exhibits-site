@@ -31,6 +31,7 @@
     },
     "require-dev": {
         "alebatistella/duskapiconf": "^1.2",
+        "barryvdh/laravel-ide-helper": "^3.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^8.0",
         "laravel/pint": "^1.22",
