@@ -6,7 +6,6 @@
 
 namespace App\Models;
 
-use App\Models\Pivot\PivotCategory;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +28,27 @@ use Storage;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Collection|LflbSubCategory[] $lflb_sub_categories
+ * @property-read \App\Models\PivotLflbStoryLflbSubCategory|null $pivot
+ * @property-read Collection<int, \App\Models\LflbStory> $lflb_categories
+ * @property-read int|null $lflb_categories_count
+ * @property-read int|null $lflb_sub_categories_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereBodyText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereCoverPhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereFeatured($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereIntroText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereMainImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereOldid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereSubCategories($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereSubCategoriesOld($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class LflbCategory extends Model
 {
@@ -65,7 +85,7 @@ class LflbCategory extends Model
 
     public function lflb_categories()
     {
-        return $this->belongsToMany(LflbStory::class)->using(PivotCategory::class);
+        return $this->belongsToMany(LflbStory::class)->using(PivotLflbStoryLflbSubCategory::class);
     }
 
     // custom code David F.

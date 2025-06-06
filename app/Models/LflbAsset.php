@@ -29,6 +29,27 @@ use Storage;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Collection|LflbStory[] $lflb_stories
+ * @property-read int|null $lflb_stories_count
+ * @property-read Collection<int, \App\Models\LflbAssetLflbStory> $lflb_story_parts
+ * @property-read int|null $lflb_story_parts_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereCaption($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereCleanText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereOldid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereOrgId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereOriginalImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereTags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereThumbnail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class LflbAsset extends Model
 {

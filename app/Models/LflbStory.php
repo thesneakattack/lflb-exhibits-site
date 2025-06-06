@@ -39,6 +39,36 @@ use Storage;
  * @property Collection|LflbAsset[] $lflb_assets
  * @property Collection|LflbSubCategory[] $lflb_sub_categories
  * @property Collection|LflbTag[] $lflb_tags
+ * @property-read int|null $lflb_assets_count
+ * @property-read Collection<int, \App\Models\LflbAssetLflbStory> $lflb_story_parts
+ * @property-read int|null $lflb_story_parts_count
+ * @property-read int|null $lflb_sub_categories_count
+ * @property-read int|null $lflb_tags_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereAppId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereCategories($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereCategoriesOld($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereEndDay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereEndMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereEndYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereLocationLat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereLocationLng($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereLocationName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereMetaData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereOldid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereStartDay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereStartMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereStartYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class LflbStory extends Model
 {

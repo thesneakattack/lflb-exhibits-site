@@ -19,6 +19,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * @property LflbStory|null $lflb_story
  * @property LflbSubCategory|null $lflb_sub_category
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory whereLflbStoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory whereLflbSubCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class LflbStoryLflbSubCategory extends Model
 {

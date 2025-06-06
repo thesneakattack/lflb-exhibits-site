@@ -20,6 +20,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property LflbStory|null $lflb_story
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereOldid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereStoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereValue($value)
+ * @mixin \Eloquent
  */
 class LflbTag extends Model
 {

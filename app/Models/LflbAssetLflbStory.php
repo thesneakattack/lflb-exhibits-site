@@ -23,6 +23,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * @property LflbAsset|null $lflb_asset
  * @property LflbStory|null $lflb_story
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereAnnotations($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereAssetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereCaption($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereOldid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereStoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class LflbAssetLflbStory extends Model
 {
