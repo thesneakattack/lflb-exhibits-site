@@ -1,4 +1,4 @@
-![Alt](https://repobeats.axiom.co/api/embed/7eb73683c3501331356380620fdf0f03abe55d66.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/a40d26860ccd9deda591d4977e92810f88c919b4.svg "Repobeats analytics image")
 
 <p align="center"><a href="https://devdojo.com/wave" target="_blank"><img src="https://cdn.devdojo.com/images/october2024/wave-logo.png" width="200"></a></p>
 
