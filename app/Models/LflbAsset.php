@@ -9,7 +9,9 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class LflbAsset
@@ -32,6 +34,7 @@ use Storage;
  * @property-read int|null $lflb_stories_count
  * @property-read Collection<int, \App\Models\LflbAssetLflbStory> $lflb_story_parts
  * @property-read int|null $lflb_story_parts_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset query()
@@ -49,6 +52,7 @@ use Storage;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAsset whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class LflbAsset extends Model
@@ -86,25 +90,37 @@ class LflbAsset extends Model
         'updated_at',
     ];
 
-    // public function lflb_story_parts()
-    // {
-    //     return $this->hasMany(LflbAssetLflbStory::class, 'asset_id');
-    // }
-
-    public function exhibits_stories()
+    /**
+     * Pivot instances for this asset.
+     */
+    public function assetPivots(): HasMany
     {
-        return $this->belongsToMany(LflbStory::class, 'lflb_asset_lflb_story', 'asset_id', 'story_id')
+        return $this->hasMany(LflbAssetLflbStory::class, 'asset_id', 'id');
+    }
+
+    /**
+     * Stories this asset belongs to.
+     */
+    public function stories(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            LflbStory::class,
+            'lflb_asset_lflb_story',
+            'asset_id',
+            'story_id'
+        )
             ->using(LflbAssetLflbStory::class)
-            ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')
+            ->withPivot(['id', '_oldid', 'caption', 'position', 'annotations'])
+            ->orderBy('position', 'asc')
             ->withTimestamps();
     }
 
-    public function get_date_for_humans_attribute()
+    public function get_date_for_humans_attribute(): string
     {
         return Carbon::parse($this->created_at)->diffForHumans();
     }
 
-    public function file_url()
+    public function file_url(): string|false
     {
         return $this->link
             ? Storage::disk('lflbassets')->url($this->link)

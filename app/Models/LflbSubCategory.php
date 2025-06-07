@@ -7,9 +7,10 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class LflbSubCategory
@@ -28,6 +29,7 @@ use Storage;
  * @property LflbCategory|null $lflb_category
  * @property Collection|LflbStory[] $lflb_stories
  * @property-read int|null $lflb_stories_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbSubCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbSubCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbSubCategory query()
@@ -42,6 +44,7 @@ use Storage;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbSubCategory whereSubTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbSubCategory whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbSubCategory whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class LflbSubCategory extends Model
@@ -72,12 +75,12 @@ class LflbSubCategory extends Model
         'updated_at',
     ];
 
-    public function exhibits_category()
+    public function exhibits_category(): BelongsTo
     {
         return $this->belongsTo(LflbCategory::class, 'category_id');
     }
 
-    public function exhibits_stories()
+    public function exhibits_stories(): BelongsToMany
     {
         return $this->belongsToMany(
             LflbStory::class,
@@ -85,9 +88,9 @@ class LflbSubCategory extends Model
             'lflb_sub_category_id',
             'lflb_story_id'
         )
-        ->using(LflbStoryLflbSubCategory::class)
-        ->withPivot('id')
-        ->withTimestamps();
+            ->using(LflbStoryLflbSubCategory::class)
+            ->withPivot('id')
+            ->withTimestamps();
     }
 
     public function get_created_date_for_humans_attribute()
