@@ -54,7 +54,7 @@ class LflbTag extends Model
         'updated_at',
     ];
 
-    public function lflb_story()
+    public function exhibits_story()
     {
         return $this->belongsTo(LflbStory::class, 'story_id');
     }

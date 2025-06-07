@@ -107,43 +107,41 @@ class LflbStory extends Model
         'updated_at',
     ];
 
-    public function lflb_app()
+    public function exhibits_app()
     {
         return $this->belongsTo(LflbApp::class, 'app_id');
     }
 
-    public function lflb_story_parts()
-    {
-        return $this->hasMany('App\Models\LflbAssetLflbStory', 'story_id');
-    }
-
-    // get all assets related to this story from the lflb_assets table
-    // using the pivot table lflb_asset_lflb_story
-    // with the pivot attributes: id, _oldid, caption, position, annotations
-    // and timestamps
-    // https://laravel.com/docs/9.x/eloquent-relationships#many-to-many
-    // https://laravel.com/docs/9.x/eloquent-relationships#defining-many-to-many-relationships
-
-    public function lflb_assets()
+    public function exhibits_assets()
     {
         return $this->belongsToMany(LflbAsset::class, 'lflb_asset_lflb_story', 'story_id', 'asset_id')
+            ->using(LflbAssetLflbStory::class)
             ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')->orderByPivot('position', 'asc')
             ->withTimestamps();
     }
 
-    public function lflb_sub_categories()
+    public function exhibits_sub_categories()
     {
-        return $this->belongsToMany(LflbSubCategory::class)
+        return $this->belongsToMany(LflbSubCategory::class, 'lflb_story_lflb_sub_category', 'lflb_story_id', 'lflb_sub_category_id')
+            ->using(LflbStoryLflbSubCategory::class)
             ->withPivot('id')
             ->withTimestamps();
     }
 
-    public function lflb_tags()
+    public function tags()
     {
         return $this->hasMany(LflbTag::class, 'story_id');
     }
 
-    public function lflb_categories()
+    /**
+     * Get the categories for the story.
+     *
+     * This method groups the subcategories by their associated category title.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+
+    public function grouped_sub_categories_by_parent_title()
     {
         $collection = $this->lflbSubCategories;
         $grouped = $collection->mapToGroups(function ($item, $key) {

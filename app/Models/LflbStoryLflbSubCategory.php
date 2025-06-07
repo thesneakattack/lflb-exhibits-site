@@ -7,7 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class LflbStoryLflbSubCategory
@@ -29,28 +29,34 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStoryLflbSubCategory whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class LflbStoryLflbSubCategory extends Model
+class LflbStoryLflbSubCategory extends Pivot
 {
     protected $connection = 'lflb_exhibits_db';
-
+    
     protected $table = 'lflb_story_lflb_sub_category';
+
+    public $timestamps = false;
 
     protected $casts = [
         'lflb_sub_category_id' => 'int',
         'lflb_story_id' => 'int',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
 
     protected $fillable = [
         'lflb_sub_category_id',
         'lflb_story_id',
+        'created_at',
+        'updated_at'
     ];
 
-    public function lflb_story()
+    public function exhibits_story()
     {
         return $this->belongsTo(LflbStory::class);
     }
 
-    public function lflb_sub_category()
+    public function exhibits_sub_category()
     {
         return $this->belongsTo(LflbSubCategory::class);
     }

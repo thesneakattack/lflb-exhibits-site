@@ -89,7 +89,7 @@ class LflbApp extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function lflb_stories()
+    public function exhibits_stories()
     {
         return $this->hasMany(LflbStory::class, 'app_id');
     }

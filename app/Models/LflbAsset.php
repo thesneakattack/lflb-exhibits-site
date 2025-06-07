@@ -86,14 +86,15 @@ class LflbAsset extends Model
         'updated_at',
     ];
 
-    public function lflb_story_parts()
-    {
-        return $this->hasMany(LflbAssetLflbStory::class, 'asset_id');
-    }
+    // public function lflb_story_parts()
+    // {
+    //     return $this->hasMany(LflbAssetLflbStory::class, 'asset_id');
+    // }
 
-    public function lflb_stories()
+    public function exhibits_stories()
     {
         return $this->belongsToMany(LflbStory::class, 'lflb_asset_lflb_story', 'asset_id', 'story_id')
+            ->using(LflbAssetLflbStory::class)
             ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')
             ->withTimestamps();
     }

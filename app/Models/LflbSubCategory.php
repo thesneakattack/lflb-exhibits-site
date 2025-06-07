@@ -72,16 +72,22 @@ class LflbSubCategory extends Model
         'updated_at',
     ];
 
-    public function lflb_category()
+    public function exhibits_category()
     {
         return $this->belongsTo(LflbCategory::class, 'category_id');
     }
 
-    public function lflb_stories()
+    public function exhibits_stories()
     {
-        return $this->belongsToMany(LflbStory::class)
-            ->withPivot('id')
-            ->withTimestamps();
+        return $this->belongsToMany(
+            LflbStory::class,
+            'lflb_story_lflb_sub_category',
+            'lflb_sub_category_id',
+            'lflb_story_id'
+        )
+        ->using(LflbStoryLflbSubCategory::class)
+        ->withPivot('id')
+        ->withTimestamps();
     }
 
     public function get_created_date_for_humans_attribute()
@@ -95,10 +101,10 @@ class LflbSubCategory extends Model
     }
 
     // Custom code David F.
-    public function story_ids()
-    {
-        return explode(',', $this->stories);
-    }
+    // public function story_ids()
+    // {
+    //     return explode(',', $this->stories);
+    // }
 
     public function main_image_url()
     {

@@ -7,7 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class LflbAssetLflbStory
@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class LflbAssetLflbStory extends Model
+class LflbAssetLflbStory extends Pivot
 {
     protected $connection = 'lflb_exhibits_db';
 
@@ -63,13 +63,20 @@ class LflbAssetLflbStory extends Model
         'created_at',
         'updated_at',
     ];
+    
+    // Optionally: add custom methods. E.g.:
+    public function incrementPosition()
+    {
+        $this->position++;
+        $this->save();
+    }
 
-    public function lflb_asset()
+    public function exhibits_asset()
     {
         return $this->belongsTo(LflbAsset::class, 'asset_id');
     }
 
-    public function lflb_story()
+    public function exhibits_story()
     {
         return $this->belongsTo(LflbStory::class, 'story_id');
     }
