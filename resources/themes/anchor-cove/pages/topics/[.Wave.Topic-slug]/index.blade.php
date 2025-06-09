@@ -1,7 +1,7 @@
 <?php
 use function Laravel\Folio\name;
 
-name('topics.category');
+name('topics.topic');
 ?>
 
 
