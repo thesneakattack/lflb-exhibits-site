@@ -30,7 +30,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * @property Collection|LflbStory[] $lflb_stories
  * @property-read int|null $lflb_stories_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbApp newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbApp newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbApp query()
@@ -49,7 +48,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbApp whereOrgId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbApp whereSecondaryColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbApp whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class LflbApp extends Model
@@ -93,6 +91,6 @@ class LflbApp extends Model
      */
     public function exhibits_stories()
     {
-        return $this->hasMany(LflbStory::class, 'app_id', 'id');
+        return $this->hasMany(LflbStory::class, 'app_id');
     }
 }

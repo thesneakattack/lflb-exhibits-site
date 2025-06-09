@@ -9,8 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 /**
  * Class LflbCategory
@@ -33,7 +32,6 @@ use Illuminate\Support\Facades\Storage;
  * @property-read Collection<int, \App\Models\LflbStory> $lflb_categories
  * @property-read int|null $lflb_categories_count
  * @property-read int|null $lflb_sub_categories_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory query()
@@ -50,7 +48,6 @@ use Illuminate\Support\Facades\Storage;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereSubCategoriesOld($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbCategory whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class LflbCategory extends Model
@@ -81,93 +78,44 @@ class LflbCategory extends Model
         'updated_at',
     ];
 
-    /**
-     * Sub-categories under this category.
-     */
     public function exhibits_sub_categories()
     {
-        return $this->hasMany(
-            LflbSubCategory::class,
-            'category_id',
-            'id'
-        );
+        return $this->hasMany(LflbSubCategory::class, 'category_id');
     }
 
     /**
      * Get all stories attached to this category via its sub-categories.
      *
-     * @return \Illuminate\Support\Collection A collection of LflbStory models
+     * @return \Illuminate\Support\Collection  A collection of LflbStory models
      */
-    /**
-     * Chainable stories relation via pivot->sub-categories.
-     */
-    public function exhibits_stories(): BelongsToMany
+    public function exhibits_stories()
     {
-        return $this->belongsToMany(
-            LflbStory::class,
-            'lflb_story_lflb_sub_category',
-            'lflb_sub_category_id',
-            'lflb_story_id'
-        )
-            ->using(LflbStoryLflbSubCategory::class)
-            ->join(
-                'lflb_sub_categories',
-                'lflb_sub_categories.id',
-                '=',
-                'lflb_story_lflb_sub_category.lflb_sub_category_id'
-            )
-            ->where('lflb_sub_categories.category_id', $this->id)
-            ->select('lflb_stories.*');
+        return $this->exhibits_sub_categories()             // 1️⃣ get the hasMany sub-categories
+            ->with('exhibits_stories')                     // 2️⃣ eager-load each sub-category’s stories
+            ->get()                               // 3️⃣ fetch the sub-categories
+            ->pluck('exhibits_stories')                    // 4️⃣ pull out each sub-category’s stories (Collection of Collections)
+            ->flatten()                           // 5️⃣ merge into one big Collection of LflbStory
+            ->unique('id')                        // 6️⃣ remove duplicates (in case multiple sub-cats share a story)
+            ->values();                           // 7️⃣ re-index the collection
     }
-    // public function exhibits_stories()
-    // {
-    //     return $this->exhibits_sub_categories()             // 1️⃣ get the hasMany sub-categories
-    //         ->with('exhibits_stories')                     // 2️⃣ eager-load each sub-category’s stories
-    //         ->get()                               // 3️⃣ fetch the sub-categories
-    //         ->pluck('exhibits_stories')                    // 4️⃣ pull out each sub-category’s stories (Collection of Collections)
-    //         ->flatten()                           // 5️⃣ merge into one big Collection of LflbStory
-    //         ->unique('id')                        // 6️⃣ remove duplicates (in case multiple sub-cats share a story)
-    //         ->values();                           // 7️⃣ re-index the collection
-    // }
 
     /**
      * Return all stories attached to this category, grouped by sub-category title.
      *
      * @return \Illuminate\Support\Collection
-     *                                        A collection keyed by sub-category title, each value a Collection of LflbStory.
+     *     A collection keyed by sub-category title, each value a Collection of LflbStory.
      */
-    /**
-     * Group stories by sub-category title, with optional app filter.
-     */
-    public function exhibits_stories_by_sub_category(?int $appId = null): Collection
+    public function exhibits_stories_by_sub_category()
     {
-        $qb = $this->exhibits_stories();
-
-        if ($appId !== null) {
-            $qb->where('app_id', $appId);
-        }
-
-        $stories = $qb->with('exhibits_sub_categories')->get();
-
-        return $stories->groupBy(function (LflbStory $story) {
-            $sub = $story->exhibits_sub_categories
-                ->first(fn ($sc) => $sc->category_id === $this->id);
-
-            return $sub?->title ?? 'Uncategorized';
-        });
+        return $this->exhibits_sub_categories()                                   // 1️⃣  Get the sub-category models
+            ->with(['exhibits_stories' => function($q) {                          // 2️⃣  Eager-load stories on each
+                $q->orderBy('lflb_story_lflb_sub_category.updated_at');    //     optionally order by pivot.updated_at
+            }])
+            ->get()                                                      // 3️⃣  Fetch the sub-categories
+            ->mapWithKeys(function($subCat) {                           // 4️⃣  Re-key the collection
+                return [ $subCat->title => $subCat->exhibits_stories ];
+            });
     }
-
-    // public function exhibits_stories_by_sub_category()
-    // {
-    //     return $this->exhibits_sub_categories()                                   // 1️⃣  Get the sub-category models
-    //         ->with(['exhibits_stories' => function ($q) {                          // 2️⃣  Eager-load stories on each
-    //             $q->orderBy('lflb_story_lflb_sub_category.updated_at');    //     optionally order by pivot.updated_at
-    //         }])
-    //         ->get()                                                      // 3️⃣  Fetch the sub-categories
-    //         ->mapWithKeys(function ($subCat) {                           // 4️⃣  Re-key the collection
-    //             return [$subCat->title => $subCat->exhibits_stories];
-    //         });
-    // }
 
     // custom code David F.
     const STATUSES = [

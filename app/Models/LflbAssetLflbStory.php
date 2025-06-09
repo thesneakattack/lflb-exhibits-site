@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
@@ -24,7 +23,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property Carbon $updated_at
  * @property LflbAsset|null $lflb_asset
  * @property LflbStory|null $lflb_story
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory query()
@@ -37,7 +35,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory wherePosition($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereStoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class LflbAssetLflbStory extends Pivot
@@ -66,7 +63,7 @@ class LflbAssetLflbStory extends Pivot
         'created_at',
         'updated_at',
     ];
-
+    
     // Optionally: add custom methods. E.g.:
     public function incrementPosition()
     {
@@ -74,12 +71,12 @@ class LflbAssetLflbStory extends Pivot
         $this->save();
     }
 
-    public function exhibits_asset(): BelongsTo
+    public function exhibits_asset()
     {
         return $this->belongsTo(LflbAsset::class, 'asset_id');
     }
 
-    public function exhibits_story(): BelongsTo
+    public function exhibits_story()
     {
         return $this->belongsTo(LflbStory::class, 'story_id');
     }

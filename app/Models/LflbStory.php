@@ -7,11 +7,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Storage;
 
 /**
@@ -47,7 +44,6 @@ use Storage;
  * @property-read int|null $lflb_story_parts_count
  * @property-read int|null $lflb_sub_categories_count
  * @property-read int|null $lflb_tags_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory query()
@@ -72,7 +68,6 @@ use Storage;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereStartYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class LflbStory extends Model
@@ -112,60 +107,28 @@ class LflbStory extends Model
         'updated_at',
     ];
 
-    /**
-     * Optional local scope to filter by app_id.
-     */
-    public function scopeForApp(Builder $query, ?int $appId)
-    {
-        return $appId
-            ? $query->where('app_id', $appId)
-            : $query;
-    }
-
-    /**
-     * The app this story belongs to.
-     */
-    public function exhibits_app(): BelongsTo
+    public function exhibits_app()
     {
         return $this->belongsTo(LflbApp::class, 'app_id');
     }
 
-    /**
-     * Asset‐pivot entries for this story.
-     */
-    public function exhibits_asset_pivots(): HasMany
-    {
-        return $this->hasMany(LflbAssetLflbStory::class, 'story_id');
-    }
-
     public function exhibits_assets()
     {
-        return $this->belongsToMany(
-            LflbAsset::class,
-            'lflb_asset_lflb_story',
-            'story_id',
-            'asset_id'
-        )
+        return $this->belongsToMany(LflbAsset::class, 'lflb_asset_lflb_story', 'story_id', 'asset_id')
             ->using(LflbAssetLflbStory::class)
-            ->withPivot(['id', '_oldid', 'caption', 'position', 'annotations'])
-            ->orderBy('position', 'asc')
+            ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')->orderByPivot('position', 'asc')
             ->withTimestamps();
     }
 
     public function exhibits_sub_categories()
     {
-        return $this->belongsToMany(
-            LflbSubCategory::class,
-            'lflb_story_lflb_sub_category',
-            'lflb_story_id',
-            'lflb_sub_category_id'
-        )
+        return $this->belongsToMany(LflbSubCategory::class, 'lflb_story_lflb_sub_category', 'lflb_story_id', 'lflb_sub_category_id')
             ->using(LflbStoryLflbSubCategory::class)
-            ->withPivot(['id'])
+            ->withPivot('id')
             ->withTimestamps();
     }
 
-    public function exhibits_tags()
+    public function tags()
     {
         return $this->hasMany(LflbTag::class, 'story_id');
     }
@@ -177,6 +140,7 @@ class LflbStory extends Model
      *
      * @return \Illuminate\Support\Collection
      */
+
     public function grouped_sub_categories_by_parent_title()
     {
         $collection = $this->lflbSubCategories;
