@@ -6,7 +6,8 @@
     "overrides": [
         {
             "files": [
-                "*.php"
+                "*.php",
+                "*.blade.php"
             ],
             "options": {
                 "parser": "blade"

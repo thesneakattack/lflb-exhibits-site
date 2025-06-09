@@ -44,6 +44,7 @@ use Storage;
  * @property-read int|null $lflb_story_parts_count
  * @property-read int|null $lflb_sub_categories_count
  * @property-read int|null $lflb_tags_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory query()
@@ -68,6 +69,7 @@ use Storage;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereStartYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbStory whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class LflbStory extends Model
@@ -140,7 +142,6 @@ class LflbStory extends Model
      *
      * @return \Illuminate\Support\Collection
      */
-
     public function grouped_sub_categories_by_parent_title()
     {
         $collection = $this->lflbSubCategories;
@@ -164,5 +165,15 @@ class LflbStory extends Model
         return $this->image
             ? Storage::disk('lflbassets')->url($this->image)
             : false;
+    }
+
+    public function archive_link()
+    {
+        return url('/archive/'.$this->category->slug.'/'.$this->slug);
+    }
+
+    public function link()
+    {
+        return url('/stories/'.$this->id);
     }
 }
