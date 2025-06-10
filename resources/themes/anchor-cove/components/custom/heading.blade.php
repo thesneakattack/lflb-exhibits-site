@@ -13,5 +13,5 @@
         'text-center' => $align != 'left' && $align != 'right'
     ]) }}>
     <{{ $level }} class="text-4xl font-extrabold sm:text-center text-left text-gray-900 lg:text-5xl">{!! $title!!}</{{ $level }}>
-    <p class="w-full my-1 text-base text-gray-900 opacity-75 sm:text-center text-left sm:my-2 sm:text-xl">MUSEUM</p>
+    <p class="w-full my-1 text-base text-gray-900 opacity-75 sm:text-center text-left sm:my-2 sm:text-xl">{!! $description!!}</p>
 </div>

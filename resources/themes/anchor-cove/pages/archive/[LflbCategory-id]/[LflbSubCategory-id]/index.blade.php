@@ -8,8 +8,8 @@ name('archive.subtopic');
     @endphp
     <x-container>
         <x-custom.heading
-            title="{{ $lflbSubCategory->title }} Stories"
-            description="Browse stories in this subtopic"
+            title="{{ $lflbSubCategory->title }}"
+            description="Choose a story below"
             align="left"
         />
         @include('theme::partials.archive.stories-loop', ['stories' => $stories])

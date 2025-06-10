@@ -15,8 +15,8 @@ name('archive.topic');
 
     <x-container>
         <div class="relative pt-10">
-            <x-custom.heading title="{{ $lflbCategory->title }} Articles"
-                description="Our latest {{ $lflbCategory->title }} posts below." align="left" />
+            <x-custom.heading title="{{ $lflbCategory->title }}"
+                description="Choose a subtopic below for articles." align="left" />
 
             {{-- @include("theme::partials.archive.subtopics") --}}
             @include("theme::partials.archive.subtopics-loop", ["subtopics" => $subtopics])
