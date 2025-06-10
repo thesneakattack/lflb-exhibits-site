@@ -142,41 +142,4 @@ class LflbCategory extends Model
             ? Storage::disk('lflbassets')->url($this->mainImage)
             : false;
     }
-
-    // Folio-compatible alias for `exhibits_sub_categories`
-    public function exhibitsSubCategories()
-    {
-        return $this->exhibits_sub_categories();
-    }
-
-    // Folio-compatible alias for `exhibits_stories`
-    public function exhibitsStories()
-    {
-        return $this->exhibits_stories();
-    }
-
-    // Folio-compatible alias for `exhibits_stories_by_sub_category`
-    public function exhibitsStoriesBySubCategory()
-    {
-        return $this->exhibits_stories_by_sub_category();
-    }
-
-    // Folio-compatible alias for `get_status_color_attribute`
-    public function getStatusColorAttribute()
-    {
-        return $this->get_status_color_attribute();
-    }
-
-    // Folio-compatible alias for `get_date_for_humans_attribute`
-    public function getDateForHumansAttribute()
-    {
-        return $this->get_date_for_humans_attribute();
-    }
-
-    // Folio-compatible alias for `main_image_url`
-    public function mainImageUrl()
-    {
-        return $this->main_image_url();
-    }
-
 }

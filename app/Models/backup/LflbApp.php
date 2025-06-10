@@ -93,11 +93,4 @@ class LflbApp extends Model
     {
         return $this->hasMany(LflbStory::class, 'app_id');
     }
-
-    // Folio-compatible alias for `exhibits_stories`
-    public function exhibitsStories()
-    {
-        return $this->exhibits_stories();
-    }
-
 }

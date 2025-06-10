@@ -60,17 +60,4 @@ class LflbStoryLflbSubCategory extends Pivot
     {
         return $this->belongsTo(LflbSubCategory::class);
     }
-
-    // Folio-compatible alias for `exhibits_story`
-    public function exhibitsStory()
-    {
-        return $this->exhibits_story();
-    }
-
-    // Folio-compatible alias for `exhibits_sub_category`
-    public function exhibitsSubCategory()
-    {
-        return $this->exhibits_sub_category();
-    }
-
 }

@@ -176,47 +176,4 @@ class LflbStory extends Model
     {
         return url('/stories/'.$this->id);
     }
-
-    // Folio-compatible alias for `exhibits_app`
-    public function exhibitsApp()
-    {
-        return $this->exhibits_app();
-    }
-
-    // Folio-compatible alias for `exhibits_assets`
-    public function exhibitsAssets()
-    {
-        return $this->exhibits_assets();
-    }
-
-    // Folio-compatible alias for `exhibits_sub_categories`
-    public function exhibitsSubCategories()
-    {
-        return $this->exhibits_sub_categories();
-    }
-
-    // Folio-compatible alias for `grouped_sub_categories_by_parent_title`
-    public function groupedSubCategoriesByParentTitle()
-    {
-        return $this->grouped_sub_categories_by_parent_title();
-    }
-
-    // Folio-compatible alias for `get_date_for_humans_attribute`
-    public function getDateForHumansAttribute()
-    {
-        return $this->get_date_for_humans_attribute();
-    }
-
-    // Folio-compatible alias for `main_image_url`
-    public function mainImageUrl()
-    {
-        return $this->main_image_url();
-    }
-
-    // Folio-compatible alias for `archive_link`
-    public function archiveLink()
-    {
-        return $this->archive_link();
-    }
-
 }

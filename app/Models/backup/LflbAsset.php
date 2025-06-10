@@ -110,29 +110,4 @@ class LflbAsset extends Model
             ? Storage::disk('lflbassets')->url($this->link)
             : false;
     }
-
-    // Folio-compatible alias for `lflb_story_parts`
-    public function lflbStoryParts()
-    {
-        return $this->lflb_story_parts();
-    }
-
-    // Folio-compatible alias for `exhibits_stories`
-    public function exhibitsStories()
-    {
-        return $this->exhibits_stories();
-    }
-
-    // Folio-compatible alias for `get_date_for_humans_attribute`
-    public function getDateForHumansAttribute()
-    {
-        return $this->get_date_for_humans_attribute();
-    }
-
-    // Folio-compatible alias for `file_url`
-    public function fileUrl()
-    {
-        return $this->file_url();
-    }
-
 }

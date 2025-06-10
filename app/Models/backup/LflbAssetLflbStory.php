@@ -80,17 +80,4 @@ class LflbAssetLflbStory extends Pivot
     {
         return $this->belongsTo(LflbStory::class, 'story_id');
     }
-
-    // Folio-compatible alias for `exhibits_asset`
-    public function exhibitsAsset()
-    {
-        return $this->exhibits_asset();
-    }
-
-    // Folio-compatible alias for `exhibits_story`
-    public function exhibitsStory()
-    {
-        return $this->exhibits_story();
-    }
-
 }

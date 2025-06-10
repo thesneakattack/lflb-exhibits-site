@@ -58,11 +58,4 @@ class LflbTag extends Model
     {
         return $this->belongsTo(LflbStory::class, 'story_id');
     }
-
-    // Folio-compatible alias for `exhibits_story`
-    public function exhibitsStory()
-    {
-        return $this->exhibits_story();
-    }
-
 }
