@@ -109,12 +109,12 @@ class LflbStory extends Model
         'updated_at',
     ];
 
-    public function exhibits_app()
+    public function lflb_app()
     {
         return $this->belongsTo(LflbApp::class, 'app_id');
     }
 
-    public function exhibits_assets()
+    public function lflb_assets()
     {
         return $this->belongsToMany(LflbAsset::class, 'lflb_asset_lflb_story', 'story_id', 'asset_id')
             ->using(LflbAssetLflbStory::class)
@@ -122,7 +122,7 @@ class LflbStory extends Model
             ->withTimestamps();
     }
 
-    public function exhibits_sub_categories()
+    public function lflb_sub_categories()
     {
         return $this->belongsToMany(LflbSubCategory::class, 'lflb_story_lflb_sub_category', 'lflb_story_id', 'lflb_sub_category_id')
             ->using(LflbStoryLflbSubCategory::class)
@@ -177,22 +177,22 @@ class LflbStory extends Model
         return url('/stories/'.$this->id);
     }
 
-    // Folio-compatible alias for `exhibits_app`
-    public function exhibitsApp()
+    // Folio-compatible alias for `lflb_app`
+    public function lflbApp()
     {
-        return $this->exhibits_app();
+        return $this->lflb_app();
     }
 
-    // Folio-compatible alias for `exhibits_assets`
-    public function exhibitsAssets()
+    // Folio-compatible alias for `lflb_assets`
+    public function lflbAssets()
     {
-        return $this->exhibits_assets();
+        return $this->lflb_assets();
     }
 
-    // Folio-compatible alias for `exhibits_sub_categories`
-    public function exhibitsSubCategories()
+    // Folio-compatible alias for `lflb_sub_categories`
+    public function lflbSubCategories()
     {
-        return $this->exhibits_sub_categories();
+        return $this->lflb_sub_categories();
     }
 
     // Folio-compatible alias for `grouped_sub_categories_by_parent_title`

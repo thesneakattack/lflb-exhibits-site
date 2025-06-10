@@ -3,9 +3,9 @@
         <li class="hidden mr-4 font-bold text-black uppercase sm:block">Topics:</li>
         <li class="@if(!isset($topic)){{ 'text-blue-600' }}@endif"><a href="{{ route("archive") }}">View All</a></li>
         <li class="mx-2">&middot;</li>
-        @foreach (\App\Models\LflbCategory::all() as $cat)
+        @foreach (\App\Models\LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')->with('lflbSubCategories')->get() as $cat)
             <li class="@if(isset($topic) && isset($topic->title) && ($topic->title == $cat->title)){{ 'text-blue-700' }}@endif">
-                <a href="{{ route("archive.topic", ["lflbCategory" => $cat]) }}">{{ $cat->id }}</a>
+                <a href="{{ route("archive.topic", ["lflbCategory" => $cat]) }}">{{ $cat->title }}</a>
             </li>
             @if (! $loop->last)
                 <li class="mx-2">&middot;</li>

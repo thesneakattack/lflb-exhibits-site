@@ -72,12 +72,12 @@ class LflbSubCategory extends Model
         'updated_at',
     ];
 
-    public function exhibits_category()
+    public function lflb_category()
     {
         return $this->belongsTo(LflbCategory::class, 'category_id');
     }
 
-    public function exhibits_stories()
+    public function lflb_stories()
     {
         return $this->belongsToMany(
             LflbStory::class,
@@ -113,16 +113,16 @@ class LflbSubCategory extends Model
             : false;
     }
 
-    // Folio-compatible alias for `exhibits_category`
-    public function exhibitsCategory()
+    // Folio-compatible alias for `lflb_category`
+    public function lflbCategory()
     {
-        return $this->exhibits_category();
+        return $this->lflb_category();
     }
 
-    // Folio-compatible alias for `exhibits_stories`
-    public function exhibitsStories()
+    // Folio-compatible alias for `lflb_stories`
+    public function lflbStories()
     {
-        return $this->exhibits_stories();
+        return $this->lflb_stories();
     }
 
     // Folio-compatible alias for `get_created_date_for_humans_attribute`

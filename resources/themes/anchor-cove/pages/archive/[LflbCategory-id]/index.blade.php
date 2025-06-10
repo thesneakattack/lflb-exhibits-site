@@ -6,11 +6,16 @@ name('archive.topic');
 <x-layouts.marketing>
     @php
         $subtopics = $lflbCategory->lflbSubCategories()->paginate(6);
+        if ($subtopics->count() === 1) {
+            $subtopic = $subtopics->first();
+            header("Location: /archive/{$lflbCategory->id}/{$subtopic->id}");
+            exit;
+        }        
     @endphp
 
     <x-container>
         <div class="relative pt-10">
-            <x-marketing.heading title="{{ $lflbCategory->title }} Articles"
+            <x-custom.heading title="{{ $lflbCategory->title }} Articles"
                 description="Our latest {{ $lflbCategory->title }} posts below." align="left" />
 
             {{-- @include("theme::partials.archive.subtopics") --}}

@@ -28,7 +28,7 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
     <x-container>
         <div class="relative pt-5">
             {{-- <x-custom.hero></x-custom.hero> --}}
-            <x-marketing.heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
+            <x-custom.heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
 
             @include("theme::partials.archive.topics")
             @include("theme::partials.archive.topics-loop")

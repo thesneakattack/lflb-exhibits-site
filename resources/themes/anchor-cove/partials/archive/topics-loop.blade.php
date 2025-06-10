@@ -20,16 +20,20 @@
                             {{ $topic->title }}
                         </h3>
                     </a>
+                    <a href="/archive/{{ $topic->id }}" class="block">
+                        <p class="mt-3 text-base leading-6 text-zinc-500">
+                            {{ substr(strip_tags($topic->introText), 0, 200) }}@if(strlen(strip_tags($topic->introText)) > 200){{ '...' }}@endif
+                        </p>
+                    </a>                    
                 </div>
-                <p
-                    class="relative self-start inline-block px-2 py-1 mt-4 text-xs font-medium leading-5 uppercase rounded text-zinc-400 bg-zinc-100">
-                    <a class="text-zinc-700 hover:underline" href="/archive/{{ $topic->id }}" rel="category">
-                        {{ $topic->title }}
-                    </a>
-                </p>
+            {{-- <p class="inline-block relative self-start px-2 py-1 mt-4 text-xs font-medium leading-5 uppercase rounded text-zinc-400 bg-zinc-100">
+                <a href="/archive/{{ $topic->id }}" class="text-zinc-700 hover:underline" rel="category">
+                    {{ $topic->title }}
+                </a>
+            </p> --}}
             </div>
 
-            <div class="flex items-center p-6 bg-zinc-50">
+            {{-- <div class="flex items-center p-6 bg-zinc-50">
                 <div class="flex-shrink-0">
                     <a href="#">
                         <img class="w-10 h-10 rounded-full" src="" alt="" />
@@ -48,7 +52,7 @@
                         </time>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </article>
     @endforeach
 
