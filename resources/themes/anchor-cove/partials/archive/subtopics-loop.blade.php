@@ -9,13 +9,13 @@
                 content="{{ Carbon\Carbon::parse($subtopic->created_at)->toIso8601String() }}" />
 
             <div class="flex-shrink-0">
-                <a href="/archive/{{ $topic->id }}/{{ $subtopic->id }}">
+                <a href="/archive/{{ $lflbCategory->id }}/{{ $subtopic->id }}">
                     <img class="object-cover w-full h-48" src="{{ $subtopic->main_image_url() }}" alt="" />
                 </a>
             </div>
             <div class="relative flex flex-col justify-between flex-1 p-6 bg-white">
                 <div class="flex-1">
-                    <a class="block" href="/archive/{{ $topic->id }}/{{ $subtopic->id }}">
+                    <a class="block" href="/archive/{{ $lflbCategory->id }}/{{ $subtopic->id }}">
                         <h3 class="mt-2 text-xl font-semibold leading-7 text-zinc-900">
                             {{ $subtopic->title }}
                         </h3>
@@ -23,7 +23,7 @@
                 </div>
                 <p
                     class="relative self-start inline-block px-2 py-1 mt-4 text-xs font-medium leading-5 uppercase rounded text-zinc-400 bg-zinc-100">
-                    <a class="text-zinc-700 hover:underline" href="/archive/{{ $topic->id }}/{{ $subtopic->id }}" rel="category">
+                    <a class="text-zinc-700 hover:underline" href="/archive/{{ $lflbCategory->id }}/{{ $subtopic->id }}" rel="category">
                         {{ $subtopic->title }}
                     </a>
                 </p>

@@ -78,7 +78,7 @@ class LflbCategory extends Model
         'updated_at',
     ];
 
-    public function exhibits_sub_categories()
+    public function lflb_sub_categories()
     {
         return $this->hasMany(LflbSubCategory::class, 'category_id');
     }
@@ -88,12 +88,12 @@ class LflbCategory extends Model
      *
      * @return \Illuminate\Support\Collection  A collection of LflbStory models
      */
-    public function exhibits_stories()
+    public function lflb_stories()
     {
-        return $this->exhibits_sub_categories()             // 1️⃣ get the hasMany sub-categories
-            ->with('exhibits_stories')                     // 2️⃣ eager-load each sub-category’s stories
+        return $this->lflb_sub_categories()             // 1️⃣ get the hasMany sub-categories
+            ->with('lflb_stories')                     // 2️⃣ eager-load each sub-category’s stories
             ->get()                               // 3️⃣ fetch the sub-categories
-            ->pluck('exhibits_stories')                    // 4️⃣ pull out each sub-category’s stories (Collection of Collections)
+            ->pluck('lflb_stories')                    // 4️⃣ pull out each sub-category’s stories (Collection of Collections)
             ->flatten()                           // 5️⃣ merge into one big Collection of LflbStory
             ->unique('id')                        // 6️⃣ remove duplicates (in case multiple sub-cats share a story)
             ->values();                           // 7️⃣ re-index the collection
@@ -105,15 +105,15 @@ class LflbCategory extends Model
      * @return \Illuminate\Support\Collection
      *     A collection keyed by sub-category title, each value a Collection of LflbStory.
      */
-    public function exhibits_stories_by_sub_category()
+    public function lflb_stories_by_sub_category()
     {
-        return $this->exhibits_sub_categories()                                   // 1️⃣  Get the sub-category models
-            ->with(['exhibits_stories' => function($q) {                          // 2️⃣  Eager-load stories on each
+        return $this->lflb_sub_categories()                                   // 1️⃣  Get the sub-category models
+            ->with(['lflb_stories' => function($q) {                          // 2️⃣  Eager-load stories on each
                 $q->orderBy('lflb_story_lflb_sub_category.updated_at');    //     optionally order by pivot.updated_at
             }])
             ->get()                                                      // 3️⃣  Fetch the sub-categories
             ->mapWithKeys(function($subCat) {                           // 4️⃣  Re-key the collection
-                return [ $subCat->title => $subCat->exhibits_stories ];
+                return [ $subCat->title => $subCat->lflb_stories ];
             });
     }
 
@@ -143,22 +143,22 @@ class LflbCategory extends Model
             : false;
     }
 
-    // Folio-compatible alias for `exhibits_sub_categories`
-    public function exhibitsSubCategories()
+    // Folio-compatible alias for `lflb_sub_categories`
+    public function lflbSubCategories()
     {
-        return $this->exhibits_sub_categories();
+        return $this->lflb_sub_categories();
     }
 
-    // Folio-compatible alias for `exhibits_stories`
-    public function exhibitsStories()
+    // Folio-compatible alias for `lflb_stories`
+    public function lflbStories()
     {
-        return $this->exhibits_stories();
+        return $this->lflb_stories();
     }
 
-    // Folio-compatible alias for `exhibits_stories_by_sub_category`
-    public function exhibitsStoriesBySubCategory()
+    // Folio-compatible alias for `lflb_stories_by_sub_category`
+    public function lflbStoriesBySubCategory()
     {
-        return $this->exhibits_stories_by_sub_category();
+        return $this->lflb_stories_by_sub_category();
     }
 
     // Folio-compatible alias for `get_status_color_attribute`
