@@ -1,6 +1,12 @@
 <div class="grid gap-5 mx-auto mt-10 sm:grid-cols-2 lg:grid-cols-3">
     <!-- Loop Through Topics Here -->
     @foreach ($stories as $story)
+    @php
+        $firstTextAsset = $story->lflbAssets
+            ->where('type', 'TEXT')
+            ->sortBy('position')
+            ->first();
+    @endphp
         <article id="post-{{ $story->id }}" class="flex flex-col overflow-hidden rounded-lg shadow-lg" typeof="Article">
             <meta property="name" content="{{ $story->title }}" />
             <meta property="author" typeof="Person" content="admin" />
@@ -24,15 +30,25 @@
                             {{ $story->title }}
                         </h3>
                     </a>
+                    <a href="/archive/{{ $lflbCategory->id }}/{{ $lflbSubCategory->id }}/{{ $story->id }}" class="block">
+                        <p class="mt-3 text-base leading-6 text-zinc-500">
+                            {{ \Illuminate\Support\Str::limit(strip_tags($story->description ?? ''), 200) }}
+                        </p>
+                        @if ($firstTextAsset)
+                            <p class="mt-3 text-base leading-6 text-zinc-500">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($firstTextAsset->cleanText ?? ''), 200) }}
+                            </p>
+                        @endif                        
+                    </a>                    
                 </div>
-                <p class="relative self-start inline-block px-2 py-1 mt-4 text-xs font-medium leading-5 uppercase rounded text-zinc-400 bg-zinc-100">
+                {{-- <p class="relative self-start inline-block px-2 py-1 mt-4 text-xs font-medium leading-5 uppercase rounded text-zinc-400 bg-zinc-100">
                     <a href="/archive/{{ $lflbCategory->id }}/{{ $lflbSubCategory->id }}//topics/{{ $story->title }}" class="text-zinc-700 hover:underline" rel="category">
                         {{ $story->title }}
                     </a>
-                </p>
+                </p> --}}
             </div>
 
-            <div class="flex items-center p-6 bg-zinc-50">
+            {{-- <div class="flex items-center p-6 bg-zinc-50">
                 <div class="flex-shrink-0">
                     <a href="/archive/{{ $lflbCategory->id }}/{{ $lflbSubCategory->id }}/#">
                         <img class="w-10 h-10 rounded-full" src="" alt="" />
@@ -50,7 +66,7 @@
                         </time>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </article>
     @endforeach
 

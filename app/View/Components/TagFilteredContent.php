@@ -39,36 +39,43 @@ class TagFilteredContent extends Component
 
         $query = $this->modelClass::query();
 
-        foreach ($this->tagFilters as $type => $slug) {
-            $query->whereHas('tags', fn($q) =>
-                $q->where('type', $type)->where('slug', $slug)
-            );
+        foreach ($this->tagFilters as $type => $slugOrArray) {
+            $query->whereHas('tags', function ($q) use ($type, $slugOrArray) {
+                $q->where('type', $type);
+
+                // ✅ allow single slug or array of slugs
+                if (is_array($slugOrArray)) {
+                    $q->whereIn('slug', $slugOrArray);
+                } else {
+                    $q->where('slug', $slugOrArray);
+                }
+            });
         }
 
         return match ($this->mode) {
             'first'  => $query->latest()->limit(1)->get(),
             'random' => $query->inRandomOrder()->limit($this->limit)->get(),
-            'all'    => $query->latest()->get(),
-            default  => $query->latest()->get(), // ✅ fallback to "all"
+            'all'    => $query->latest()->limit($this->limit)->get(),
+            default  => $query->latest()->limit($this->limit)->get() // fallback still respects limit
+            
         };
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
         return view()->exists("components.tag-filtered-content.{$this->view}")
-            ? view("components.tag-filtered-content.{$this->view}")
-            : view("components.tag-filtered-content.default");
+            ? view("components.tag-filtered-content.{$this->view}", ['items' => $this->items])
+            : view("components.tag-filtered-content.default", ['items' => $this->items]);
     }
 }
 // Example usage:
 // {{-- Defaults to 'all' mode --}}
 // <x-tag-filtered-content
 //     model-class="\App\Models\LflbStory"
-//     tag-filters='{"Primary":"biography","Section":"hero"}'
-//     view="hero"
+//     tag-filters='{"primary":["biography","timeline"],"section":["hero","featured"]}'
+//     mode="random"
+//     limit="3"
+//     view="grid"
 // />
 
 // {{-- Limit to 1 random --}}
