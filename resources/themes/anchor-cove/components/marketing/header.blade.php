@@ -165,7 +165,7 @@
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='timeline', 'hover:text-zinc-900' : navigationMenu!='timeline' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                    <a href="{{ route("timeline") }}" class="flex items-center space-x-2">
                                         <span>Timeline</span>
                                     </a>
                                     <svg
@@ -200,7 +200,7 @@
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='location', 'hover:text-zinc-900' : navigationMenu!='location' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                    <a href="{{ route("location") }}" class="flex items-center space-x-2">
                                         <span>Location</span>
                                     </a>
                                     <svg
@@ -235,7 +235,7 @@
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='biography', 'hover:text-zinc-900' : navigationMenu!='biography' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                    <a href="{{ route("biography") }}" class="flex items-center space-x-2">
                                         <span>Biography</span>
                                     </a>
                                     <svg
