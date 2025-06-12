@@ -65,15 +65,20 @@ class LflbStoryResource extends Resource
                     ->label('Select Tags')
                     ->multiple()
                     ->options(\App\Models\Tag::pluck('name', 'id')->toArray()),
-            ])
-            ->query(function (Builder $query, array $data): Builder {
-                if (!empty($data['tag_ids'])) {
-                    foreach ($data['tag_ids'] as $tagId) {
-                        $query->whereHas('tags', fn($q) => $q->where('tags.id', $tagId));
+                ])
+                ->indicateUsing(function (array $data): ?string {
+                    if (empty($data['tag_ids'])) return null;
+                    $count = count($data['tag_ids']);
+                    return "Filtered by {$count} tag" . ($count > 1 ? 's' : '');
+                })                
+                ->query(function (Builder $query, array $data): Builder {
+                    if (!empty($data['tag_ids'])) {
+                        foreach ($data['tag_ids'] as $tagId) {
+                            $query->whereHas('tags', fn($q) => $q->where('tags.id', $tagId));
+                        }
                     }
-                }
-                return $query;
-            }),
+                    return $query;
+                }),
             ]);
     }
 
