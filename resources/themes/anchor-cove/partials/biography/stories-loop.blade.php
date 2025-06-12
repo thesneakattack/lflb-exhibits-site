@@ -6,10 +6,13 @@
             ->where('type', 'TEXT')
             ->sortBy('position')
             ->first();
+            // Use full archive route if category/subcategory are set, otherwise fallback to /story/{id}
             $storyUrl = isset($lflbCategory, $lflbSubCategory)
                 ? "/archive/{$lflbCategory->id}/{$lflbSubCategory->id}/{$story->id}"
-                : "/story/{$story->id}";               
+                : "/story/{$story->id}";            
     @endphp
+
+
         <article id="post-{{ $story->id }}" class="flex flex-col overflow-hidden rounded-lg shadow-lg" typeof="Article">
             <meta property="name" content="{{ $story->title }}" />
             <meta property="author" typeof="Person" content="admin" />

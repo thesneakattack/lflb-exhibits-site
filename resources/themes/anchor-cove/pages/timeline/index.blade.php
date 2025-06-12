@@ -36,13 +36,13 @@ $stories = LflbStory::whereHas('tags', function ($q) {
             />
 
             {{-- Loop through paginated biography stories --}}
-            {{-- <x-tag-filtered-content
+            <x-tag-filtered-content
                 model-class="\App\Models\LflbStory"
                 tag-filters='{"main": "biography"}'
                 view="stories-loop"
                 limit="9"
-            /> --}}
-            @include('theme::partials.archive.stories-loop', ['stories' => $stories])
+            />
+            {{-- @include('theme::partials.archive.stories-loop', ['stories' => $stories]) --}}
 
 
             {{-- Pagination links using Wave3's partial --}}
