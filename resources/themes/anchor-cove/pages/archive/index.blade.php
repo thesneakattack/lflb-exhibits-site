@@ -15,11 +15,6 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
 ?>
 
 
-{{-- Dump the flat stories collection --}}
-<pre></pre>
-
-{{-- Dump the grouped stories-by-subcategory --}}
-<pre></pre>
 
 <x-layouts.marketing :seo="[
     'title' => 'Topics',
@@ -27,6 +22,7 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
 ]">
     <x-container>
         <div class="relative pt-5">
+            <x-custom.df-hero />
             {{-- <x-custom.hero></x-custom.hero> --}}
             <x-custom.heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
 

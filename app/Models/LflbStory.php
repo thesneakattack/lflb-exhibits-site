@@ -130,10 +130,10 @@ class LflbStory extends Model
             ->withTimestamps();
     }
 
-    // public function tags()
-    // {
-    //     return $this->hasMany(LflbTag::class, 'story_id');
-    // }
+    public function lflb_tags()
+    {
+        return $this->hasMany(LflbTag::class, 'story_id');
+    }
 
     public function tags()
     {
@@ -175,11 +175,17 @@ class LflbStory extends Model
     public function archive_link()
     {
         return url('/archive/'.$this->category->slug.'/'.$this->slug);
-    }
+    }    
 
     public function link()
     {
         return url('/stories/'.$this->id);
+    }
+
+    public static function withAnyTags(array $slugs, int $limit = null)
+    {
+        $query = static::whereHas('tags', fn ($q) => $q->whereIn('slug', $slugs))->latest();
+        return $limit ? $query->limit($limit)->get() : $query->get();
     }
 
     // Folio-compatible alias for `lflb_app`
@@ -199,6 +205,11 @@ class LflbStory extends Model
     {
         return $this->lflb_sub_categories();
     }
+
+    public function lflbTags()
+    {
+        return $this->lflb_tags();
+    }    
 
     // Folio-compatible alias for `grouped_sub_categories_by_parent_title`
     public function groupedSubCategoriesByParentTitle()
@@ -223,5 +234,13 @@ class LflbStory extends Model
     {
         return $this->archive_link();
     }
+
+    public function image_orientation()
+    {
+        [$width, $height] = getimagesize(Storage::disk('lflbassets')->path($this->image));
+
+        if ($width === $height) return 'square';
+        return $width > $height ? 'landscape' : 'portrait';
+    }    
 
 }

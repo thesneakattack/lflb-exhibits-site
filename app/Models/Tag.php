@@ -21,4 +21,15 @@ class Tag extends Model
     {
         return $this->morphedByMany(\App\Models\LflbSubCategory::class, 'taggable');
     }
+
+    public static function randomHeroStory()
+    {
+        return static::where('slug', 'hero')->first()?->stories()->inRandomOrder()->first();
+    }
+
+    public static function storiesForSection(string $slug, int $limit = null)
+    {
+        $query = static::where('slug', $slug)->first()?->stories()->latest();
+        return $limit ? $query?->limit($limit)->get() : $query?->get();
+    }    
 }

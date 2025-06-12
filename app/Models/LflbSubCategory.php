@@ -113,6 +113,12 @@ class LflbSubCategory extends Model
             : false;
     }
 
+    public static function withAnyTags(array $slugs, int $limit = null)
+    {
+        $query = static::whereHas('tags', fn ($q) => $q->whereIn('slug', $slugs))->latest();
+        return $limit ? $query->limit($limit)->get() : $query->get();
+    }    
+
     // Folio-compatible alias for `lflb_category`
     public function lflbCategory()
     {
