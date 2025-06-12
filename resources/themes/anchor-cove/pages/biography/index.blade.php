@@ -42,7 +42,7 @@ $stories = LflbStory::whereHas('tags', function ($q) {
                 view="stories-loop"
                 limit="9"
             /> --}}
-            @include('theme::partials.archive.stories-loop', ['stories' => $stories])
+            @include('theme::partials.stories-loop', ['stories' => $stories])
 
 
             {{-- Pagination links using Wave3's partial --}}

@@ -1,20 +1,20 @@
 <?php
 
 use function Laravel\Folio\name;
-name('timeline');
+name('location');
 
 use App\Models\LflbStory;
 
 // Paginate all LflbStories tagged as biographies
 $stories = LflbStory::whereHas('tags', function ($q) {
-    $q->where('type', 'main')->where('slug', 'timeline');
+    $q->where('type', 'main')->where('slug', 'location');
 })->latest()->paginate(9);
 ?>
 
 <x-layouts.marketing
     :seo="[
-        'title' => 'Timelines',
-        'description' => 'Our Archive of Timelines',
+        'title' => 'Locations',
+        'description' => 'Our Archive of Locations',
     ]"
 >
     <x-container>
@@ -23,22 +23,22 @@ $stories = LflbStory::whereHas('tags', function ($q) {
             {{-- Optional featured hero using TagFilteredContent --}}
             <x-tag-filtered-content
                 model-class="\App\Models\LflbStory"
-                tag-filters='{"main": "timeline","feature": "hero"}'
+                tag-filters='{"main": "location","feature": "hero"}'
                 view="hero"
                 mode="random"
                 limit="1"
             />
 
             <x-custom.heading
-                title="Timeline Archive"
+                title="Location Archive"
                 description="Learn about the people behind the history."
                 align="left"
             />
 
-            {{-- Loop through paginated timeline stories --}}
+            {{-- Loop through paginated location stories --}}
             {{-- <x-tag-filtered-content
                 model-class="\App\Models\LflbStory"
-                tag-filters='{"main": "timeline"}'
+                tag-filters='{"main": "location"}'
                 view="stories-loop"
                 limit="9"
             /> --}}

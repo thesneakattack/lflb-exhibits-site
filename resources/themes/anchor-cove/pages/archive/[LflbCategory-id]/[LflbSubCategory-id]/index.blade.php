@@ -12,7 +12,7 @@ name('archive.subtopic');
             description="Choose a story below"
             align="left"
         />
-        @include('theme::partials.archive.stories-loop', ['stories' => $stories])
+        @include('theme::partials.stories-loop', ['stories' => $stories])
         <div class="my-10">{{ $stories->links('theme::partials.pagination') }}</div>
     </x-container>
 </x-layouts.marketing>
