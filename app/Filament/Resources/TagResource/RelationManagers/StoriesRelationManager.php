@@ -38,7 +38,9 @@ class StoriesRelationManager extends RelationManager
             ->headerActions([
                 Tables\Actions\AttachAction::make()
                     ->recordSelectSearchColumns(['title'])
-                    ->recordTitleAttribute('title'),
+                    ->recordTitleAttribute('title')
+                    ->preloadRecordSelect()
+                    ->multiple(),
             ])
             ->actions([
                 Tables\Actions\DetachAction::make(),

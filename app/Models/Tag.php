@@ -17,6 +17,12 @@ class Tag extends Model
         return $this->morphedByMany(\App\Models\LflbStory::class, 'taggable');
     }
 
+    public function lflbStories()
+    {
+        return $this->stories();
+    }
+
+
     public function subcategories()
     {
         return $this->morphedByMany(\App\Models\LflbSubCategory::class, 'taggable');
