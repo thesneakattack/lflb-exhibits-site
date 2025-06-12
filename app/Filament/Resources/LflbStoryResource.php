@@ -22,7 +22,7 @@ class LflbStoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Stories';
-    protected static ?string $navigationGroup = 'Content';
+    // protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
     {
