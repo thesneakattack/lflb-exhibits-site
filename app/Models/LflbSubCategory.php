@@ -46,9 +46,9 @@ use Storage;
  */
 class LflbSubCategory extends Model
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_sub_categories';
+    protected $table = 'lflbsign_development.lflb_sub_categories';
 
     public $timestamps = false;
 
@@ -81,7 +81,7 @@ class LflbSubCategory extends Model
     {
         return $this->belongsToMany(
             LflbStory::class,
-            'lflb_story_lflb_sub_category',
+            'lflbsign_development.lflb_story_lflb_sub_category',
             'lflb_sub_category_id',
             'lflb_story_id'
         )
@@ -147,6 +147,12 @@ class LflbSubCategory extends Model
     public function mainImageUrl()
     {
         return $this->main_image_url();
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(\App\Models\Tag::class, 'taggable', 'taggables')
+        ->using(\App\Models\Taggable::class);
     }
 
 }

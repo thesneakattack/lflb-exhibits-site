@@ -53,9 +53,9 @@ use Storage;
  */
 class LflbAsset extends Model
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_assets';
+    protected $table = 'lflbsign_development.lflb_assets';
 
     public $timestamps = false;
 
@@ -93,7 +93,7 @@ class LflbAsset extends Model
 
     public function exhibits_stories()
     {
-        return $this->belongsToMany(LflbStory::class, 'lflb_asset_lflb_story', 'asset_id', 'story_id')
+        return $this->belongsToMany(LflbStory::class, 'lflbsign_development.lflb_asset_lflb_story', 'asset_id', 'story_id')
             ->using(LflbAssetLflbStory::class)
             ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')
             ->withTimestamps();

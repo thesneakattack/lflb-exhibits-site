@@ -31,9 +31,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class LflbStoryLflbSubCategory extends Pivot
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
     
-    protected $table = 'lflb_story_lflb_sub_category';
+    protected $table = 'lflbsign_development.lflb_story_lflb_sub_category';
 
     public $timestamps = false;
 

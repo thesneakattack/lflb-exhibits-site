@@ -52,9 +52,9 @@ use Storage;
  */
 class LflbCategory extends Model
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_categories';
+    protected $table = 'lflbsign_development.lflb_categories';
 
     public $timestamps = false;
 

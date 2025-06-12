@@ -74,9 +74,9 @@ use Storage;
  */
 class LflbStory extends Model
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_stories';
+    protected $table = 'lflbsign_development.lflb_stories';
 
     public $timestamps = false;
 
@@ -116,7 +116,7 @@ class LflbStory extends Model
 
     public function lflb_assets()
     {
-        return $this->belongsToMany(LflbAsset::class, 'lflb_asset_lflb_story', 'story_id', 'asset_id')
+        return $this->belongsToMany(LflbAsset::class, 'lflbsign_development.lflb_asset_lflb_story', 'story_id', 'asset_id')
             ->using(LflbAssetLflbStory::class)
             ->withPivot('id', '_oldid', 'caption', 'position', 'annotations')->orderByPivot('position', 'asc')
             ->withTimestamps();
@@ -124,15 +124,21 @@ class LflbStory extends Model
 
     public function lflb_sub_categories()
     {
-        return $this->belongsToMany(LflbSubCategory::class, 'lflb_story_lflb_sub_category', 'lflb_story_id', 'lflb_sub_category_id')
+        return $this->belongsToMany(LflbSubCategory::class, 'lflbsign_development.lflb_story_lflb_sub_category', 'lflb_story_id', 'lflb_sub_category_id')
             ->using(LflbStoryLflbSubCategory::class)
             ->withPivot('id')
             ->withTimestamps();
     }
 
+    // public function tags()
+    // {
+    //     return $this->hasMany(LflbTag::class, 'story_id');
+    // }
+
     public function tags()
     {
-        return $this->hasMany(LflbTag::class, 'story_id');
+        return $this->morphToMany(\App\Models\Tag::class, 'taggable', 'taggables')
+        ->using(\App\Models\Taggable::class);
     }
 
     /**

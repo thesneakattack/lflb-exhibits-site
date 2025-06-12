@@ -52,9 +52,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LflbApp extends Model
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_apps';
+    protected $table = 'lflbsign_development.lflb_apps';
 
     public $timestamps = false;
 

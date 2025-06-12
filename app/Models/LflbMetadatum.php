@@ -51,9 +51,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LflbMetadatum extends Model
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_metadata';
+    protected $table = 'lflbsign_development.lflb_metadata';
 
     public $timestamps = false;
 
