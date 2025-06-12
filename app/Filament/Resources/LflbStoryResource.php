@@ -13,6 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\LflbStoryResource\RelationManagers\TagsRelationManager;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\TagsColumn;
 
 class LflbStoryResource extends Resource
 {
@@ -31,10 +33,17 @@ class LflbStoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->sortable()->searchable(),
-                Tables\Columns\TagsColumn::make('tags.name')->separator(','),
+                TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('id')->label('Story ID'),
+                TagsColumn::make('tags.name')->label('Tags')->separator(','),
+                TextColumn::make('direct_url')
+                    ->label('Direct URL')
+                    ->getStateUsing(fn (LflbStory $record) => url('/story/' . $record->id))
+                    ->url(fn (LflbStory $record) => url('/story/' . $record->id))
+                    ->openUrlInNewTab()
+                    // ->copyable(),
             ])
-            ->defaultSort('id', 'desc');
+            ->defaultSort('title', 'desc');
     }
 
     public static function getRelations(): array

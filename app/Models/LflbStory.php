@@ -182,7 +182,7 @@ class LflbStory extends Model
         return url('/stories/'.$this->id);
     }
 
-    public static function withAnyTags(array $slugs, int $limit = null)
+    public static function withAnyTags(array $slugs, ?int $limit = null)
     {
         $query = static::whereHas('tags', fn ($q) => $q->whereIn('slug', $slugs))->latest();
         return $limit ? $query->limit($limit)->get() : $query->get();
