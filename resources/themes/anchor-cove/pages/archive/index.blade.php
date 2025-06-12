@@ -22,7 +22,13 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
 ]">
     <x-container>
         <div class="relative pt-5">
-            <x-custom.df-hero />
+            <x-tag-filtered-content
+    model-class="\App\Models\LflbStory"
+    tag-filters='{"feature":"hero"}'
+    limit="1"
+    mode="random"
+    view="hero"
+/>
             {{-- <x-custom.hero></x-custom.hero> --}}
             <x-custom.heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
 
