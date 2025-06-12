@@ -15,6 +15,13 @@ class TagsRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('type')->label('Type')->badge()->color(fn($state) => match ($state) {
+                    'main' => 'success',
+                    'category' => 'info',
+                    'feature' => 'info',
+                    'theme' => 'warning',
+                    default => 'gray',
+                }),                
                 Tables\Columns\TextColumn::make('slug'),
             ])
             ->headerActions([

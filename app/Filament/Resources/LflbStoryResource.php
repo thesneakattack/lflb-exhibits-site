@@ -34,8 +34,18 @@ class LflbStoryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')->sortable()->searchable(),
-                TextColumn::make('id')->label('Story ID'),
-                TagsColumn::make('tags.name')->label('Tags')->separator(','),
+                TextColumn::make('id')->label('Story ID')->sortable(),
+                TagsColumn::make('tags')->label('Tags')
+                ->getStateUsing(fn($record) =>
+                    $record->tags->map(fn($tag) => ucfirst($tag->type) . ': ' . $tag->name)->all()
+                )
+                ->color(fn ($state) => match (true) {
+                    str_contains($state, 'Main:') => 'success',
+                    str_contains($state, 'Category:') => 'info',
+                    str_contains($state, 'Feature:') => 'info',
+                    str_contains($state, 'Theme:')   => 'warning',
+                    default                          => 'gray',
+                }),          
                 TextColumn::make('direct_url')
                     ->label('Direct URL')
                     ->getStateUsing(fn (LflbStory $record) => url('/story/' . $record->id))
@@ -43,7 +53,28 @@ class LflbStoryResource extends Resource
                     ->openUrlInNewTab()
                     // ->copyable(),
             ])
-            ->defaultSort('title', 'desc');
+            ->defaultSort('tags_count', 'desc')
+            ->modifyQueryUsing(function (Builder $query) {
+                $query->withCount('tags');
+            })
+            ->filters([
+                Tables\Filters\Filter::make('tags')
+                ->label('Tags')
+                ->form([
+                    Forms\Components\Select::make('tag_ids')
+                    ->label('Select Tags')
+                    ->multiple()
+                    ->options(\App\Models\Tag::pluck('name', 'id')->toArray()),
+            ])
+            ->query(function (Builder $query, array $data): Builder {
+                if (!empty($data['tag_ids'])) {
+                    foreach ($data['tag_ids'] as $tagId) {
+                        $query->whereHas('tags', fn($q) => $q->where('tags.id', $tagId));
+                    }
+                }
+                return $query;
+            }),
+            ]);
     }
 
     public static function getRelations(): array

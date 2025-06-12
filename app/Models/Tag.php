@@ -10,7 +10,7 @@ class Tag extends Model
 {
     protected $connection = 'mysql';
 
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = ['name', 'slug', 'description', 'type'];
 
     public function stories()
     {
@@ -33,9 +33,14 @@ class Tag extends Model
         return static::where('slug', 'hero')->first()?->stories()->inRandomOrder()->first();
     }
 
-    public static function storiesForSection(string $slug, int $limit = null)
+    public static function storiesForSection(string $slug, ?int $limit = null)
     {
         $query = static::where('slug', $slug)->first()?->stories()->latest();
         return $limit ? $query?->limit($limit)->get() : $query?->get();
+    }    
+
+    public function getLabeledNameAttribute(): string
+    {
+        return ucfirst($this->type) . ': ' . $this->name; // Used for display in select options
     }    
 }

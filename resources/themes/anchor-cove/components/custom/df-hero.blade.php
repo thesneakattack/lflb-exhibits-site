@@ -10,7 +10,7 @@
             <p class="text-base leading-relaxed mb-4">
                 {{ Str::limit($story->description ?? 'Short Description of the article goes here.', 160) }}
             </p>
-            <a href="/archive/{{ $story->lflb_category_id }}/{{ $story->lflb_sub_category_id }}/{{ $story->id }}"
+            <a href="/story/{{ $story->id }}"
                class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700 transition">
                 Read More
             </a>

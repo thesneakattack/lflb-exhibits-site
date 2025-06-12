@@ -25,7 +25,7 @@ class PlanResource extends Resource
 
     public static function canAccess(): bool
     {
-        return false;
+        return auth()->check() && auth()->user()->hasRole('superadmin');
     }    
 
     public static function form(Form $form): Form

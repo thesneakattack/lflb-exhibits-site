@@ -69,7 +69,7 @@
                     </div> -->
                 @else
                     <div class="overflow-hidden rounded-full">
-                        <x-button href="{{ route('dashboard') }}" tag="a" size="md">View Dashboard</x-button>
+                        {{-- <x-button href="{{ route('dashboard') }}" tag="a" size="md">View Dashboard</x-button> --}}
                     </div>
                 @endif
             </div>
@@ -345,48 +345,48 @@
                             <div x-show="navigationMenu == 'timeline'" class="flex items-stretch justify-center w-full p-3">
                                 <div class="w-full md:w-72">
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Documentation</span>
-                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 1</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Videos</span>
-                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 2</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Blog</span>
-                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 3</span>
+                                        <span class="block leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                 </div>
                             </div>
                             <div x-show="navigationMenu == 'location'" class="flex items-stretch justify-center w-full p-3">
                                 <div class="w-full md:w-72">
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Documentation</span>
-                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 1</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Videos</span>
-                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 2</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Blog</span>
-                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 3</span>
+                                        <span class="block leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                 </div>
                             </div>
                             <div x-show="navigationMenu == 'biography'" class="flex items-stretch justify-center w-full p-3">
                                 <div class="w-full md:w-72">
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Documentation</span>
-                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 1</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Videos</span>
-                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 2</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Blog</span>
-                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 3</span>
+                                        <span class="block leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                 </div>
                             </div>

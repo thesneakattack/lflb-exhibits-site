@@ -31,6 +31,15 @@ class TagResource extends Resource
             Forms\Components\TextInput::make('name')->required()->maxLength(255),
             Forms\Components\TextInput::make('slug')->required()->maxLength(255),
             Forms\Components\Textarea::make('description')->rows(4),
+            Forms\Components\Select::make('type')
+                ->label('Tag Type')
+                ->options([
+                    'main' => 'Main',
+                    'category' => 'Category',
+                    'feature' => 'Feature',
+                    'theme' => 'Theme',
+                ])
+                ->required(),                      
         ]);
     }
 
@@ -41,6 +50,7 @@ class TagResource extends Resource
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('slug')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('description')->limit(50)->wrap(),
+                Tables\Columns\TextColumn::make('type')->sortable()->searchable(),                  
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
             ])
             ->filters([
