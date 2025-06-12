@@ -21,6 +21,11 @@ class CategoryResource extends Resource
 
     protected static ?int $navigationSort = 6;
 
+    public static function canAccess(): bool
+    {
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
