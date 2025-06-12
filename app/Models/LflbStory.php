@@ -137,8 +137,7 @@ class LflbStory extends Model
 
     public function tags()
     {
-        return $this->morphToMany(\App\Models\Tag::class, 'taggable', 'taggables')
-        ->using(\App\Models\Taggable::class);
+        return $this->morphToMany(\App\Models\Tag::class, 'taggable');
     }
 
     /**
