@@ -15,33 +15,57 @@ name('archive.story');
             {!! $lflbStory->body !!}
         </div>
 
-        @if ($lflbStory->lflbAssets->isNotEmpty())
-            {{-- Split layout: media (left) and text (right) --}}
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                {{-- LEFT COLUMN: Media Assets --}}
-                <div class="space-y-8">
-                    @foreach ($lflbStory->lflbAssets->whereIn('type', ['IMAGE', 'VIDEO', 'AUDIO']) as $asset)
-                        @switch(strtoupper($asset->type))
-                            @case('IMAGE')
-                                <x-lflb-asset.image :asset="$asset" />
-                                @break
-                            @case('VIDEO')
-                                <x-lflb-asset.video :asset="$asset" />
-                                @break
-                            @case('AUDIO')
-                                <x-lflb-asset.audio :asset="$asset" />
-                                @break
-                        @endswitch
-                    @endforeach
-                </div>
+@php
+    $mediaAssets = $lflbStory->lflbAssets->whereIn('type', ['IMAGE', 'VIDEO', 'AUDIO']);
+    $textAssets = $lflbStory->lflbAssets->where('type', 'TEXT');
+@endphp
 
-                {{-- RIGHT COLUMN: Text Assets --}}
-                <div class="space-y-8 prose prose-lg">
-                    @foreach ($lflbStory->lflbAssets->where('type', 'TEXT') as $asset)
-                        <x-lflb-asset.text :asset="$asset" />
-                    @endforeach
-                </div>
+@if ($mediaAssets->isNotEmpty() || $textAssets->isNotEmpty())
+    @if ($textAssets->isEmpty())
+        {{-- No text assets: Display all media in 2-column order --}}
+        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
+            @foreach ($mediaAssets as $asset)
+                @switch(strtoupper($asset->type))
+                    @case('IMAGE')
+                        <x-lflb-asset.image :asset="$asset" />
+                        @break
+                    @case('VIDEO')
+                        <x-lflb-asset.video :asset="$asset" />
+                        @break
+                    @case('AUDIO')
+                        <x-lflb-asset.audio :asset="$asset" />
+                        @break
+                @endswitch
+            @endforeach
+        </div>
+    @else
+        {{-- Default split layout: media (left) and text (right) --}}
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            {{-- LEFT COLUMN: Media Assets --}}
+            <div class="space-y-8">
+                @foreach ($mediaAssets as $asset)
+                    @switch(strtoupper($asset->type))
+                        @case('IMAGE')
+                            <x-lflb-asset.image :asset="$asset" />
+                            @break
+                        @case('VIDEO')
+                            <x-lflb-asset.video :asset="$asset" />
+                            @break
+                        @case('AUDIO')
+                            <x-lflb-asset.audio :asset="$asset" />
+                            @break
+                    @endswitch
+                @endforeach
             </div>
-        @endif
+
+            {{-- RIGHT COLUMN: Text Assets --}}
+            <div class="space-y-8 prose prose-lg">
+                @foreach ($textAssets as $asset)
+                    <x-lflb-asset.text :asset="$asset" />
+                @endforeach
+            </div>
+        </div>
+    @endif
+@endif
     </x-container>
 </x-layouts.marketing>

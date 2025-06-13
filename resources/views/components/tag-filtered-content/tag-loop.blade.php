@@ -20,7 +20,7 @@
                     />
                 </a>
                 <div class="absolute bottom-0 left-0 w-full bg-lfnavy-500 bg-opacity-70">
-                    <h3 class="text-white font-semibold text-lg sm:text-xl capitalize tracking-tight px-4 py-1">
+                    <h3 class="text-white font-semibold text-lg sm:text-xl capitalize tracking-tight px-4 py-2">
                         {{ $tag->name }}
                     </h3>
                 </div>
