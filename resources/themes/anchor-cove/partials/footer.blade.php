@@ -1,133 +1,57 @@
 
 <!-- Section 1 -->
 <footer class="@if(Request::is('/')){{ 'bg-lfnavy-500' }}@else{{ 'bg-lfnavy-500' }}@endif">
-    <div class="px-8 pt-16 mx-auto max-w-7xl lg:px-12 xl:px-5">
-        <div class="flex flex-wrap justify-between items-start pb-20">
-            <a href="#_" class="flex items-center mt-1 w-auto text-lg font-bold md:w-1/6">
-                <x-logo class="w-auto h-8"></x-logo>
-            </a>
-            <div class="grid grid-cols-2 gap-y-16 pt-2 mt-20 w-full sm:grid-cols-4 lg:gap-x-8 md:w-5/6 md:mt-0 md:pr-6">
-                <div class="md:justify-self-end">
-                    <h3 class="font-semibold text-white">Product</h3>
-                    <ul class="mt-6 space-y-4 text-sm">
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Features</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Integrations</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Documentation</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Pricing</span>
-                            </a>
-                        </li>
-                    </ul>
+    <div class="px-8 pt-8 mx-auto max-w-7xl lg:px-12 xl:px-5">
+        <div class="flex flex-wrap justify-between items-start pb-10">
+            
+            <div class="flex items-center gap-4 md:w-1/3">
+                <a href="/" class="shrink-0">
+                    <x-logo class="w-auto h-12"></x-logo>
+                </a>
+                <div class="text-white text-sm leading-snug">
+                    <div class="font-semibold">The History Center of Lake Forest–Lake Bluff</div>
+                    <div>509 East Deerpath</div>
+                    <div>Lake Forest, IL 60045</div>
                 </div>
-                <div class="md:justify-self-end">
-                    <h3 class="font-semibold text-white">About</h3>
-                    <ul class="mt-6 space-y-4 text-sm">
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Our Story</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Company</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Our Team</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Work With Us</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="md:justify-self-end">
-                    <h3 class="font-semibold text-white">Resources</h3>
-                    <ul class="mt-6 space-y-4 text-sm">
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Help Center</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Developer API</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Our Blog</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Status</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Sitemap</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="md:justify-self-end">
+            </div>
+            <div class="grid grid-cols-2 gap-y-8 pt-0 mt-20 sm:grid-cols-2 lg:gap-x-8 md:w-2/3 md:mt-0 md:pr-6">
+                <div class="md:justify-self-start">
                     <h3 class="font-semibold text-white">Contact</h3>
-                    <ul class="mt-6 space-y-4 text-sm">
+                    <ul class="mt-0 space-y-0 text-sm">
                         <li>
                             <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Advertising</span>
+                                <span class="absolute bottom-0 w-full border-b border-white opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
+                                <span>(847)-234-5253</span>
                             </a>
                         </li>
                         <li>
                             <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Press</span>
+                                <span class="absolute bottom-0 w-full border-b border-white opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
+                                <span>email@lflbhistory.org</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Partners</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#_" class="inline-block relative text-white group">
-                                <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>Email</span>
-                            </a>
-                        </li>
+                        </li>                        
                     </ul>
+                </div>                
+                <div class="md:justify-self-end">
+                    <div class="flex items-center gap-4">
+                        {{-- Text block --}}
+                        <div>
+                            <h3 class="font-semibold text-white">About This Project</h3>
+                            <ul class="mt-0 space-y-4 text-sm">
+                                <li>
+                                    <a href="#_" class="inline-block relative text-white group">
+                                        <span class="absolute bottom-0 w-full border-b border-white opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
+                                        <span>Funded by ___________</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {{-- Logo block (adjust size as needed) --}}
+                        <a href="#_" class="shrink-0">
+                            {{-- <img src="/path/to/logo.png" alt="Funder Logo" class="h-10 w-auto"> --}}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,19 +61,19 @@
                 <li class="mb-6 text-center flex-full lg:flex-none lg:mb-0 text-white">&copy; {{ date('Y') }} {{ setting('site.title', 'Laravel Wave') }}, Inc. All rights reserved.</li>
                 <li class="lg:ml-6">
                     <a href="#_" class="inline-block relative text-white group">
-                        <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
+                        <span class="absolute bottom-0 w-full border-b border-white opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>Privacy Policy</span>
                     </a>
                 </li>
                 <li class="mr-auto ml-auto text-center lg:ml-6 lg:mr-0">
                     <a href="#_" class="inline-block relative text-white group">
-                        <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
+                        <span class="absolute bottom-0 w-full border-b border-white opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>Disclaimers</span>
                     </a>
                 </li>
                 <li class="lg:ml-6">
                     <a href="#_" class="inline-block relative text-white group">
-                        <span class="absolute bottom-0 w-full border-b border-black opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
+                        <span class="absolute bottom-0 w-full border-b border-white opacity-0 transition duration-150 ease-out transform -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>Terms and Conditions</span>
                     </a>
                 </li>
