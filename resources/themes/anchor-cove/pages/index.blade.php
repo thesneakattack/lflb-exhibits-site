@@ -12,6 +12,13 @@
     ]"
 >
     <x-marketing.hero></x-marketing.hero>
+    <x-tag-filtered-content
+    model-class="\App\Models\LflbStory"
+    tag-filters='{"feature": "featured-stories"}'
+    view="featured-loop"
+    mode="random"
+    limit="1"
+    />
     <x-marketing.waves></x-marketing.waves>
     <x-marketing.features></x-marketing.features>
     <x-marketing.wave-bottom></x-marketing.wave-bottom>

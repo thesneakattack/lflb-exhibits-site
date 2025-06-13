@@ -44,13 +44,6 @@ $stories = LflbStory::whereHas('tags', function ($q) {
             /> --}}
             @include('theme::partials.stories-loop', ['stories' => $stories])
 
-            <x-tag-filtered-content
-                model-class="\App\Models\LflbStory"
-                tag-filters='{"feature": "featured-stories"}'
-                view="featured-loop"
-                limit="3"
-            />
-
 
             {{-- Pagination links using Wave3's partial --}}
             <div class="my-10">

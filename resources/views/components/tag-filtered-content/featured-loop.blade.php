@@ -7,7 +7,6 @@
         <div class="space-y-12">
             @foreach ($items as $index => $story)
                 @php
-                    // Prioritize performance by pre-sorting once
                     $sortedAssets = $story->lflbAssets->sortBy('position');
                     $image = $sortedAssets->firstWhere('type', 'IMAGE');
                     $text  = $sortedAssets->firstWhere('type', 'TEXT');
@@ -23,7 +22,7 @@
                             @endif
                         </div>
                         <div class="md:w-1/2 w-full px-6 py-4">
-                            <h3 class="text-xl font-semibold text-zinc-800 mb-1">{{ $story->title }}</h3>
+                            <h3 class="text-xl font-extrabold font-sans text-zinc-800 mb-1 line-clamp-2 break-words leading-snug">{{ $story->title }}</h3>
                             <h4 class="text-zinc-500 mb-3">Subheading</h4>
                             <p class="text-sm text-zinc-700 leading-relaxed mb-4">
                                 {{ \Illuminate\Support\Str::limit(strip_tags($text->cleanText ?? ''), 400) }}
@@ -35,7 +34,7 @@
                     @else
                         {{-- Text Left, Image Right --}}
                         <div class="md:w-1/2 w-full px-6 py-4 order-2 md:order-1">
-                            <h3 class="text-xl font-semibold text-zinc-800 mb-1">{{ $story->title }}</h3>
+                            <h3 class="text-xl font-extrabold font-sans text-zinc-800 mb-1 line-clamp-2 break-words leading-snug">{{ $story->title }}</h3>
                             <h4 class="text-zinc-500 mb-3">Subheading</h4>
                             <p class="text-sm text-zinc-700 leading-relaxed mb-4">
                                 {{ \Illuminate\Support\Str::limit(strip_tags($text->cleanText ?? ''), 400) }}
