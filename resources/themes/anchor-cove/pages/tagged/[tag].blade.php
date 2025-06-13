@@ -14,26 +14,28 @@ $stories = LflbStory::whereHas('tags', function ($q) use ($tag) {
 ?>
 
 <x-layouts.marketing>
-    <x-container class="pt-10 space-y-12">
+    <x-container>
+        <div class="relative pt-10">
 
-        {{-- Page header --}}
-        <x-custom.heading title="{{ $tagModel->name }}" description="All content tagged with '{{ $tagModel->name }}'." />
 
-        {{-- Livewire-powered content sections --}}
-        <x-tag-filtered-content 
-            :model-class="'App\\Models\\LflbStory'" 
-            :tag-filters="json_encode([$tag])"
-            :limit="1" 
-            view="hero"
-            mode="random" 
-        />
+            {{-- Page header --}}
+            <x-custom.heading title="{{ $tagModel->name }}" description="All content tagged with '{{ $tagModel->name }}'." />
+
+            {{-- Livewire-powered content sections --}}
+            <x-tag-filtered-content 
+                :model-class="'App\\Models\\LflbStory'" 
+                :tag-filters="json_encode([$tag])"
+                :limit="1" 
+                view="hero"
+                mode="random" 
+            />
 
             @include('theme::partials.stories-loop', ['stories' => $stories])
+        </div>
 
             {{-- Pagination links using Wave3's partial --}}
-            <div class="my-10">
+            <div class="flex justify-center my-10">
                 {{ $stories->links('theme::partials.pagination') }}
             </div>        
-
     </x-container>
 </x-layouts.marketing>

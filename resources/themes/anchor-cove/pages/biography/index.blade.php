@@ -44,12 +44,12 @@ $stories = LflbStory::whereHas('tags', function ($q) {
             /> --}}
             @include('theme::partials.stories-loop', ['stories' => $stories])
 
+        </div>
 
             {{-- Pagination links using Wave3's partial --}}
-            <div class="my-10">
+            <div class="flex justify-center my-10">
                 {{ $stories->links('theme::partials.pagination') }}
             </div>
 
-        </div>
     </x-container>
 </x-layouts.marketing>

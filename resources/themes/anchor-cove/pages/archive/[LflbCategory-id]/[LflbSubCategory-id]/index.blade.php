@@ -7,12 +7,16 @@ name('archive.subtopic');
         $stories = $lflbSubCategory->lflbStories()->paginate(6);
     @endphp
     <x-container>
+        <div class="relative pt-10">
+
         <x-custom.heading
             title="{{ $lflbSubCategory->title }}"
             description="Choose a story below"
             align="left"
         />
         @include('theme::partials.stories-loop', ['stories' => $stories])
-        <div class="my-10">{{ $stories->links('theme::partials.pagination') }}</div>
+        </div>
+
+        <div class="flex justify-center my-10">{{ $stories->links('theme::partials.pagination') }}</div>
     </x-container>
 </x-layouts.marketing>

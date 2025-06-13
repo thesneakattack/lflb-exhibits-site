@@ -5,6 +5,8 @@ name('story.view');
 
 <x-layouts.marketing>
     <x-container>
+    <div class="relative pt-10">
+
         <x-custom.heading
             title="{{ $lflbStory->title }}"
             description="{{ $lflbStory->description }}"
@@ -68,5 +70,6 @@ name('story.view');
         </div>
     @endif
 @endif
+    </div>
     </x-container>
 </x-layouts.marketing>
