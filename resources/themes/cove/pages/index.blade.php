@@ -17,4 +17,4 @@
     <x-marketing.wave-bottom></x-marketing.wave-bottom>
     <x-marketing.testimonials></x-marketing.testimonials>
     <x-marketing.pricing></x-marketing.pricing>
-</x-layouts.marketing> 
+</x-layouts.marketing>

@@ -49,9 +49,15 @@ export default {
                     800: "#0A1228",
                     900: "#050915",
                 },
+                lftealblue: '#2DCFD0',
+                lflimegreen: '#89C540',
+                lfredorange: '#F0512B',
+                lflavenderpurple: '#B89ACD',
             },
         },
     },
-
-    plugins: [forms, require("@tailwindcss/typography")],
+    corePlugins:{
+        aspectRatio: false,
+    },
+    plugins: [forms, require("@tailwindcss/typography"), require("@tailwindcss/aspect-ratio")],
 };

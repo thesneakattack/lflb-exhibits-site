@@ -5,7 +5,7 @@
         <li class="mx-2">&middot;</li>
         @foreach (\Wave\Category::all() as $cat)
             <li class="@if(isset($category) && isset($category->slug) && ($category->slug == $cat->slug)){{ 'text-blue-700' }}@endif">
-                <a href="{{ route("topics.category", ["category" => $cat]) }}">{{ $cat->name }}</a>
+                <a href="{{ route("topics.topic", ["topic" => $cat]) }}">{{ $cat->name }}</a>
             </li>
             @if (! $loop->last)
                 <li class="mx-2">&middot;</li>

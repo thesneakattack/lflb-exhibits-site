@@ -7,7 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class LflbAssetLflbStory
@@ -23,12 +23,25 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * @property LflbAsset|null $lflb_asset
  * @property LflbStory|null $lflb_story
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereAnnotations($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereAssetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereCaption($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereOldid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereStoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbAssetLflbStory whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
-class LflbAssetLflbStory extends Model
+class LflbAssetLflbStory extends Pivot
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_asset_lflb_story';
+    protected $table = 'lflbsign_development.lflb_asset_lflb_story';
 
     public $timestamps = false;
 
@@ -50,14 +63,34 @@ class LflbAssetLflbStory extends Model
         'created_at',
         'updated_at',
     ];
+    
+    // Optionally: add custom methods. E.g.:
+    public function incrementPosition()
+    {
+        $this->position++;
+        $this->save();
+    }
 
-    public function lflb_asset()
+    public function exhibits_asset()
     {
         return $this->belongsTo(LflbAsset::class, 'asset_id');
     }
 
-    public function lflb_story()
+    public function exhibits_story()
     {
         return $this->belongsTo(LflbStory::class, 'story_id');
     }
+
+    // Folio-compatible alias for `exhibits_asset`
+    public function exhibitsAsset()
+    {
+        return $this->exhibits_asset();
+    }
+
+    // Folio-compatible alias for `exhibits_story`
+    public function exhibitsStory()
+    {
+        return $this->exhibits_story();
+    }
+
 }

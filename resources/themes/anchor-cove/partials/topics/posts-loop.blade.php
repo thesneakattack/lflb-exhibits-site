@@ -1,36 +1,28 @@
 <div class="grid gap-5 mx-auto mt-10 sm:grid-cols-2 lg:grid-cols-3">
-    <!-- Loop Through stories Here -->
-    @foreach ($stories as $story)
-        <article id="post-{{ $story->id }}" class="flex flex-col overflow-hidden rounded-lg shadow-lg" typeof="Article">
-            <meta property="name" content="{{ $story->title }}" />
+    <!-- Loop Through Topics Here -->
+    @foreach ($topics as $topic)
+        <article id="post-{{ $topic->id }}" class="flex flex-col overflow-hidden rounded-lg shadow-lg" typeof="Article">
+            <meta property="name" content="{{ $topic->title }}" />
             <meta property="author" typeof="Person" content="admin" />
-            <meta property="dateModified" content="{{ Carbon\Carbon::parse($story->updated_at)->toIso8601String() }}" />
-            <meta class="uk-margin-remove-adjacent" property="datePublished" content="{{ Carbon\Carbon::parse($story->created_at)->toIso8601String() }}" />
+            <meta property="dateModified" content="{{ Carbon\Carbon::parse($topic->updated_at)->toIso8601String() }}" />
+            <meta class="uk-margin-remove-adjacent" property="datePublished" content="{{ Carbon\Carbon::parse($topic->created_at)->toIso8601String() }}" />
 
             <div class="flex-shrink-0">
-                <a href="{{ $story->id }}">
-                    <img class="object-cover w-full h-48" src="{{ $story->main_image_url() }}" alt="" />
+                <a href="{{ $topic->id }}">
+                    <img class="object-cover w-full h-48" src="{{ $topic->main_image_url() }}" alt="" />
                 </a>
             </div>
             <div class="relative flex flex-col justify-between flex-1 p-6 bg-white">
                 <div class="flex-1">
-                    <a href="{{ $story->id }}" class="block">
+                    <a href="{{ $topic->id }}" class="block">
                         <h3 class="mt-2 text-xl font-semibold leading-7 text-zinc-900">
-                            {{ $story->title }}
+                            {{ $topic->title }}
                         </h3>
                     </a>
-                    @foreach ($story->lflb_assets as $asset)
-                        @if ($asset->type === "TEXT")
-                            <p class="mt-3 text-base leading-6 text-zinc-500">
-                                {{ substr(strip_tags($asset->cleanText), 0, 200) }}@if (strlen(strip_tags($asset->cleanText)) > 200){{ "..." }}
-                                @endif
-                            </p>
-                        @endif
-                    @endforeach
                 </div>
                 <p class="relative self-start inline-block px-2 py-1 mt-4 text-xs font-medium leading-5 uppercase rounded text-zinc-400 bg-zinc-100">
-                    <a href="/topics/{{ $story->title }}" class="text-zinc-700 hover:underline" rel="category">
-                        {{ $story->title }}
+                    <a href="/topics/{{ $topic->title }}" class="text-zinc-700 hover:underline" rel="category">
+                        {{ $topic->title }}
                     </a>
                 </p>
             </div>
@@ -48,8 +40,8 @@
                     </p>
                     <div class="flex text-sm leading-5 text-zinc-500">
                         on
-                        <time datetime="{{ Carbon\Carbon::parse($story->created_at)->toIso8601String() }}" class="ml-1">
-                            {{ Carbon\Carbon::parse($story->created_at)->toFormattedDateString() }}
+                        <time datetime="{{ Carbon\Carbon::parse($topic->created_at)->toIso8601String() }}" class="ml-1">
+                            {{ Carbon\Carbon::parse($topic->created_at)->toFormattedDateString() }}
                         </time>
                     </div>
                 </div>

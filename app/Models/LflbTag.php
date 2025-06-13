@@ -20,12 +20,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property LflbStory|null $lflb_story
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereOldid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereStoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|LflbTag whereValue($value)
+ * @mixin \Eloquent
  */
 class LflbTag extends Model
 {
-    protected $connection = 'lflb_exhibits_db';
+    // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflb_tags';
+    protected $table = 'lflbsign_development.lflb_tags';
 
     public $timestamps = false;
 
@@ -44,8 +54,15 @@ class LflbTag extends Model
         'updated_at',
     ];
 
-    public function lflb_story()
+    public function exhibits_story()
     {
         return $this->belongsTo(LflbStory::class, 'story_id');
     }
+
+    // Folio-compatible alias for `exhibits_story`
+    public function exhibitsStory()
+    {
+        return $this->exhibits_story();
+    }
+
 }
