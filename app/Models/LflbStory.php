@@ -237,10 +237,19 @@ class LflbStory extends Model
 
     public function image_orientation()
     {
-        [$width, $height] = getimagesize(Storage::disk('lflbassets')->path($this->image));
+        $path = Storage::disk('lflbassets')->path($this->image);
 
+        if (!file_exists($path)) return 'landscape';
+
+        $mime = @mime_content_type($path);
+        if (!str_starts_with($mime, 'image/')) return 'landscape';
+
+        [$width, $height] = @getimagesize($path) ?: [0, 0];
+
+        if ($width === 0 || $height === 0) return 'landscape';
         if ($width === $height) return 'square';
+
         return $width > $height ? 'landscape' : 'portrait';
-    }    
+    }   
 
 }

@@ -14,16 +14,20 @@
                 @endphp
 
                 <div class="md:flex md:items-start bg-zinc-50 rounded-lg shadow overflow-hidden">
-                    @if ($isEven)
-                        {{-- Image Left, Text Right --}}
-                        <div class="md:w-1/2 w-full">
+                    <div class="md:flex md:items-start bg-zinc-50 rounded-lg shadow overflow-hidden">
+                        {{-- IMAGE block (always shown first on mobile) --}}
+                        <div class="w-full md:w-1/2 {{ $isEven ? 'md:order-1' : 'md:order-2' }}">
                             @if ($image)
-                                <img src="{{ Storage::disk('lflbassets')->url($image->link) }}" alt="{{ $story->title }}" class="object-cover w-full h-full max-h-[300px]">
+                                <img src="{{ Storage::disk('lflbassets')->url($image->link) }}"
+                                    alt="{{ $story->title }}"
+                                    class="object-cover w-full h-full max-h-[300px]">
                             @endif
                         </div>
-                        <div class="md:w-1/2 w-full px-6 py-4">
+
+                        {{-- TEXT block --}}
+                        <div class="w-full md:w-1/2 px-6 py-4 {{ $isEven ? 'md:order-2' : 'md:order-1' }}">
                             <h3 class="text-xl font-extrabold font-sans text-zinc-800 mb-1 line-clamp-2 break-words leading-snug">{{ $story->title }}</h3>
-                            <h4 class="text-zinc-500 mb-3">Subheading</h4>
+                            <h4 class="text-zinc-500 mb-3">{{ $story->description }}</h4>
                             <p class="text-sm text-zinc-700 leading-relaxed mb-4">
                                 {{ \Illuminate\Support\Str::limit(strip_tags($text->cleanText ?? ''), 400) }}
                             </p>
@@ -31,24 +35,7 @@
                                 📄 Read More
                             </a>
                         </div>
-                    @else
-                        {{-- Text Left, Image Right --}}
-                        <div class="md:w-1/2 w-full px-6 py-4 order-2 md:order-1">
-                            <h3 class="text-xl font-extrabold font-sans text-zinc-800 mb-1 line-clamp-2 break-words leading-snug">{{ $story->title }}</h3>
-                            <h4 class="text-zinc-500 mb-3">Subheading</h4>
-                            <p class="text-sm text-zinc-700 leading-relaxed mb-4">
-                                {{ \Illuminate\Support\Str::limit(strip_tags($text->cleanText ?? ''), 400) }}
-                            </p>
-                            <a href="/story/{{ $story->id }}" class="inline-block px-4 py-2 bg-red-400 hover:bg-red-500 text-white text-sm font-semibold rounded shadow">
-                                📄 Read More
-                            </a>
-                        </div>
-                        <div class="md:w-1/2 w-full order-1 md:order-2">
-                            @if ($image)
-                                <img src="{{ Storage::disk('lflbassets')->url($image->link) }}" alt="{{ $story->title }}" class="object-cover w-full h-full max-h-[300px]">
-                            @endif
-                        </div>
-                    @endif
+                    </div>
                 </div>
             @endforeach
         </div>
