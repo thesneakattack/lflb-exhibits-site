@@ -29,9 +29,9 @@ $stories = LflbStory::whereHas('tags', function ($q) {
                 limit="1"
             />
 
-            <x-custom.heading
-                title="Timeline Archive"
-                description="Learn about the people behind the history."
+            <x-custom.df-heading
+                title="Timelines"
+                description="Explore events and stories across decades of Lake Forest–Lake Bluff history."
                 align="left"
             />
 

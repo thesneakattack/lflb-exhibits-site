@@ -19,7 +19,7 @@ $stories = LflbStory::whereHas('tags', function ($q) use ($tag) {
 
 
             {{-- Page header --}}
-            <x-custom.heading title="{{ $tagModel->name }}" description="All content tagged with '{{ $tagModel->name }}'." />
+            <x-custom.df-heading title="{{ $tagModel->name }}" description="All content tagged with '{{ $tagModel->name }}'." />
 
             {{-- Livewire-powered content sections --}}
             <x-tag-filtered-content 

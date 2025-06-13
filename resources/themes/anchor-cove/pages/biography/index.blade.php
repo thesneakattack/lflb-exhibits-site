@@ -29,8 +29,8 @@ $stories = LflbStory::whereHas('tags', function ($q) {
                 limit="1"
             />
 
-            <x-custom.heading
-                title="Biography Archive"
+            <x-custom.df-heading
+                title="Biographies"
                 description="Learn about the people behind the history."
                 align="left"
             />

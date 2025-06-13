@@ -29,9 +29,9 @@ $stories = LflbStory::whereHas('tags', function ($q) {
                 limit="1"
             />
 
-            <x-custom.heading
-                title="Location Archive"
-                description="Learn about the people behind the history."
+            <x-custom.df-heading
+                title="Locations"
+                description="Discover stories and artifacts tied to local places and landmarks in the community."
                 align="left"
             />
 

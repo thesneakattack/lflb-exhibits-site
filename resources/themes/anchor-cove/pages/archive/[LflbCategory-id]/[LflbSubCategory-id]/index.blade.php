@@ -9,7 +9,7 @@ name('archive.subtopic');
     <x-container>
         <div class="relative pt-10">
 
-        <x-custom.heading
+        <x-custom.df-heading
             title="{{ $lflbSubCategory->title }}"
             description="Choose a story below"
             align="left"

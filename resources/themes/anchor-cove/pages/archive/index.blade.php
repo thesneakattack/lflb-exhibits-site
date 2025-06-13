@@ -30,7 +30,7 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
     view="hero"
 />
             {{-- <x-custom.hero></x-custom.hero> --}}
-            <x-custom.heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
+            <x-custom.df-heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
 
             @include("theme::partials.archive.topics")
             @include("theme::partials.archive.topics-loop")

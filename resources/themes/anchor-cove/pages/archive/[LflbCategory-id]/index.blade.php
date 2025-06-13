@@ -15,7 +15,7 @@ name('archive.topic');
 
     <x-container>
         <div class="relative pt-10">
-            <x-custom.heading title="{{ $lflbCategory->title }}"
+            <x-custom.df-heading title="{{ $lflbCategory->title }}"
                 description="Choose a subtopic below for articles." align="left" />
 
             {{-- @include("theme::partials.archive.subtopics") --}}
