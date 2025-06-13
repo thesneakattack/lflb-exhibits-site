@@ -14,6 +14,7 @@ class TagFilteredContent extends Component
     public string $view;
     public string $mode;
     public $items;
+    public bool $shouldRender = false;
 
     public function __construct(
         string $modelClass,
@@ -29,6 +30,7 @@ class TagFilteredContent extends Component
         $this->mode = $mode;
 
         $this->items = $this->fetchItems();
+        $this->shouldRender = $this->items->isNotEmpty();
     }
 
     protected function fetchItems()
@@ -57,40 +59,17 @@ class TagFilteredContent extends Component
             'random' => $query->inRandomOrder()->limit($this->limit)->get(),
             'all'    => $query->latest()->limit($this->limit)->get(),
             default  => $query->latest()->limit($this->limit)->get() // fallback still respects limit
-            
         };
     }
 
     public function render(): View|Closure|string
     {
+        if (!$this->shouldRender) {
+            return ''; // suppress rendering entirely if nothing to show
+        }
+
         return view()->exists("components.tag-filtered-content.{$this->view}")
             ? view("components.tag-filtered-content.{$this->view}", ['items' => $this->items])
             : view("components.tag-filtered-content.default", ['items' => $this->items]);
     }
 }
-// Example usage:
-// {{-- Defaults to 'all' mode --}}
-// <x-tag-filtered-content
-//     model-class="\App\Models\LflbStory"
-//     tag-filters='{"primary":["biography","timeline"],"section":["hero","featured"]}'
-//     mode="random"
-//     limit="3"
-//     view="grid"
-// />
-
-// {{-- Limit to 1 random --}}
-// <x-tag-filtered-content
-//     model-class="\App\Models\LflbStory"
-//     tag-filters='{"Section":"hero"}'
-//     mode="random"
-//     limit="1"
-//     view="hero"
-// />
-
-// {{-- Return only the most recent item --}}
-// <x-tag-filtered-content
-//     model-class="\App\Models\LflbStory"
-//     tag-filters='{"Section":"featured"}'
-//     mode="first"
-//     view="hero"
-// />

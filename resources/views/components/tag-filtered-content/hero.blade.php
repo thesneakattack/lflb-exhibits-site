@@ -5,7 +5,7 @@
     $textAsset = $story?->lflbAssets?->where('type', 'TEXT')?->sortBy('position')->first();
 @endphp
 
-@if ($story && $background)
+@if ($story && $story?->main_image_url() && $background)
     <section class="relative w-full text-white overflow-hidden">
         @if ($orientation === 'portrait')
             <div class="absolute inset-0 -z-10">
