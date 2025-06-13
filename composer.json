@@ -9,6 +9,7 @@
         "ext-exif": "*",
         "ext-gd": "*",
         "bezhansalleh/filament-google-analytics": "^2.0",
+        "blade-ui-kit/blade-icons": "^1.8",
         "codeat3/blade-phosphor-icons": "^2.0",
         "devdojo/app": "0.11.0",
         "devdojo/auth": "^1.0",
@@ -31,6 +32,7 @@
     },
     "require-dev": {
         "alebatistella/duskapiconf": "^1.2",
+        "barryvdh/laravel-ide-helper": "^3.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^8.0",
         "laravel/pint": "^1.22",

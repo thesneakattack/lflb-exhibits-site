@@ -69,7 +69,7 @@
                     </div> -->
                 @else
                     <div class="overflow-hidden rounded-full">
-                        <x-button href="{{ route('dashboard') }}" tag="a" size="md">View Dashboard</x-button>
+                        {{-- <x-button href="{{ route('dashboard') }}" tag="a" size="md">View Dashboard</x-button> --}}
                     </div>
                 @endif
             </div>
@@ -129,7 +129,7 @@
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='topic', 'hover:text-zinc-900' : navigationMenu!='topic' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:w-auto md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-max focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                    <a href="{{ route("archive") }}" class="flex items-center space-x-2">
                                         <span>Topic</span>
                                     </a>
 
@@ -165,7 +165,7 @@
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='timeline', 'hover:text-zinc-900' : navigationMenu!='timeline' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                    <a href="{{ route("timeline") }}" class="flex items-center space-x-2">
                                         <span>Timeline</span>
                                     </a>
                                     <svg
@@ -200,7 +200,7 @@
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='location', 'hover:text-zinc-900' : navigationMenu!='location' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                    <a href="{{ route("location") }}" class="flex items-center space-x-2">
                                         <span>Location</span>
                                     </a>
                                     <svg
@@ -235,7 +235,7 @@
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='biography', 'hover:text-zinc-900' : navigationMenu!='biography' }"
                                     class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 md:rounded-full md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
                                 >
-                                    <a href="{{ route("blog") }}" class="flex items-center space-x-2">
+                                    <a href="{{ route("biography") }}" class="flex items-center space-x-2">
                                         <span>Biography</span>
                                     </a>
                                     <svg
@@ -345,48 +345,48 @@
                             <div x-show="navigationMenu == 'timeline'" class="flex items-stretch justify-center w-full p-3">
                                 <div class="w-full md:w-72">
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Documentation</span>
-                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 1</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Videos</span>
-                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 2</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Blog</span>
-                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 3</span>
+                                        <span class="block leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                 </div>
                             </div>
                             <div x-show="navigationMenu == 'location'" class="flex items-stretch justify-center w-full p-3">
                                 <div class="w-full md:w-72">
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Documentation</span>
-                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 1</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Videos</span>
-                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 2</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Blog</span>
-                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 3</span>
+                                        <span class="block leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                 </div>
                             </div>
                             <div x-show="navigationMenu == 'biography'" class="flex items-stretch justify-center w-full p-3">
                                 <div class="w-full md:w-72">
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Documentation</span>
-                                        <span class="block font-light leading-5 opacity-50">Learn how to setup, install, and configure Wave.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 1</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Videos</span>
-                                        <span class="block font-light leading-5 opacity-50">A series of video screencasts to help you get started.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 2</span>
+                                        <span class="block font-light leading-5 opacity-50">Description goes here, and be a short sentence or two.</span>
                                     </a>
                                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100">
-                                        <span class="block mb-1 font-medium text-black">Blog</span>
-                                        <span class="block leading-5 opacity-50">Wave comes with a full blogging platform. See an example here.</span>
+                                        <span class="block mb-1 font-medium text-black">Sub-Section 3</span>
+                                        <span class="block leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>
                                 </div>
                             </div>

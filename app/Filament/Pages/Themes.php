@@ -18,6 +18,11 @@ class Themes extends Page
     protected static ?int $navigationSort = 8;
 
     protected static string $view = 'filament.pages.themes';
+    
+    public static function canAccess(): bool
+    {
+        return auth()->check() && auth()->user()->hasRole('superadmin');
+    }    
 
     public function mount(){
         $this->themes_folder = config('themes.folder', resource_path('themes'));

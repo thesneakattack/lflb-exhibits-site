@@ -52,6 +52,8 @@ export default {
             },
         },
     },
-
-    plugins: [forms, require("@tailwindcss/typography")],
+    corePlugins:{
+        aspectRatio: false,
+    },
+    plugins: [forms, require("@tailwindcss/typography"), require("@tailwindcss/aspect-ratio")],
 };

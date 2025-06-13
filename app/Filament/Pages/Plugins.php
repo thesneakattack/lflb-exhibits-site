@@ -18,6 +18,11 @@ class Plugins extends Page
 
     public $plugins = [];
 
+    public static function canAccess(): bool
+    {
+        return auth()->check() && auth()->user()->hasRole('superadmin');
+    }    
+
     public function mount()
     {
         $this->refreshPlugins();

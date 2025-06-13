@@ -11,10 +11,17 @@
         'type'          => 'website'
     ]"
 >
-    <x-marketing.hero></x-marketing.hero>
-    <x-marketing.waves></x-marketing.waves>
-    <x-marketing.features></x-marketing.features>
-    <x-marketing.wave-bottom></x-marketing.wave-bottom>
-    <x-marketing.testimonials></x-marketing.testimonials>
-    <x-marketing.pricing></x-marketing.pricing>
-</x-layouts.marketing> 
+    {{-- <x-marketing.hero></x-marketing.hero> --}}
+    <x-tag-filtered-content
+    model-class="\App\Models\LflbStory"
+    tag-filters='{"feature": "featured-stories"}'
+    view="featured-loop"
+    mode="random"
+    limit="3"
+    />
+    {{-- <x-marketing.waves></x-marketing.waves> --}}
+    {{-- <x-marketing.features></x-marketing.features> --}}
+    {{-- <x-marketing.wave-bottom></x-marketing.wave-bottom> --}}
+    {{-- <x-marketing.testimonials></x-marketing.testimonials> --}}
+    {{-- <x-marketing.pricing></x-marketing.pricing> --}}
+</x-layouts.marketing>
