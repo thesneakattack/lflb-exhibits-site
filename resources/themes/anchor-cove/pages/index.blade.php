@@ -12,8 +12,17 @@
     ]"
 >
 {{-- <x-marketing.hero></x-marketing.hero> --}}
+
 <x-container>
     <div class="relative pt-5">
+            {{-- <x-tag-filtered-content
+                model-class="\App\Models\LflbStory"
+                tag-filters='{"feature": "hero"}'
+                view="hero"
+                mode="random"
+                limit="1"
+            /> --}}
+        <x-custom.df-front-hero />
         <x-tag-filtered-content 
             model-class="App\Models\LflbStory" 
             tag-filters='{"category" : ["photos","statistics","primary-documents","print-publications"]}'
