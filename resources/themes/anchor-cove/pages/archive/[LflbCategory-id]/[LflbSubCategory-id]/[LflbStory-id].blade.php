@@ -23,7 +23,7 @@ name('archive.story');
                     <div>
                         <img src="{{ Storage::disk('lflbassets')->url($imageAsset->link) }}"
                              alt="{{ $lflbStory->title }}"
-                             class="w-full h-auto max-h-[400px] object-cover rounded shadow mb-2">
+                             class="w-full h-auto max-h-[400px] object-contain rounded shadow mb-2">
                         @if ($imageAsset->caption)
                             <p class="text-sm text-zinc-500 italic">{{ $imageAsset->caption }}</p>
                         @endif
