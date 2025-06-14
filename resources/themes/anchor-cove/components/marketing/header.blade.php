@@ -314,7 +314,7 @@
                                     </a>
                                 </div>
                                 <div class="flex-shrink-0 w-full md:w-72">
-                                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100 group">
+                                    <a href="/archive/33/" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded-xl hover:bg-neutral-100 group">
                                         <span class="block mb-1 font-medium text-black">Deeply Rooted and Rising High</span>
                                         <span class="block font-light leading-5 opacity-50">Description goes here, and can be a short sentence or two.</span>
                                     </a>

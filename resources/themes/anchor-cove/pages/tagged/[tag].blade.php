@@ -19,7 +19,6 @@ $stories = LflbStory::whereHas('tags', function ($q) use ($tag) {
 
 
             {{-- Page header --}}
-            <x-custom.df-heading title="{{ $tagModel->name }}" description="All content tagged with '{{ $tagModel->name }}'." />
 
             {{-- Livewire-powered content sections --}}
             <x-tag-filtered-content 
@@ -29,6 +28,9 @@ $stories = LflbStory::whereHas('tags', function ($q) use ($tag) {
                 view="hero"
                 mode="random" 
             />
+
+            <x-custom.df-heading title="{{ $tagModel->name }}" description="All content tagged with '{{ $tagModel->name }}'." />
+
 
             @include('theme::partials.stories-loop', ['stories' => $stories])
         </div>
