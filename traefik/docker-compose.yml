@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  traefik:
+    image: traefik:latest
+    command:
+      - "--entrypoints.web.address=:8080"
+      - "--providers.docker=true"
+      - "--api.dashboard=true"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - traefik
+   
+networks:
+  traefik:
+    external: true
