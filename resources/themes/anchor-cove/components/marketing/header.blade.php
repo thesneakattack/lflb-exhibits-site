@@ -1,3 +1,8 @@
+@php
+    function isActive($pattern) {
+        return request()->is($pattern) ? 'underline' : '';
+    }
+@endphp
 <header
     x-data="{
         mobileMenuOpen: false,
@@ -127,7 +132,7 @@
                             >
                                 <button
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='topic', 'hover:text-zinc-900' : navigationMenu!='topic' }"
-                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:w-auto md:justify-center md:h-10 md:px-4 md:py-2 bg-lftealblue border border-white rounded-none md:w-max focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
+                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:w-auto md:justify-center md:h-10 md:px-4 md:py-2 bg-lftealblue border border-white rounded-none md:w-max focus:outline-none disabled:opacity-50 disabled:pointer-events-none group {{ isActive('archive*') }}"
                                 >
                                     <a href="{{ route("archive") }}" class="flex items-center space-x-2">
                                         <span>Topic</span>
@@ -163,7 +168,7 @@
                             >
                                 <button
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='timeline', 'hover:text-zinc-900' : navigationMenu!='timeline' }"
-                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 bg-lflimegreen border border-white rounded-none md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
+                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 bg-lflimegreen border border-white rounded-none md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group {{ isActive('timeline*') }}"
                                 >
                                     <a href="{{ route("timeline") }}" class="flex items-center space-x-2">
                                         <span>Timeline</span>
@@ -198,7 +203,7 @@
                             >
                                 <button
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='location', 'hover:text-zinc-900' : navigationMenu!='location' }"
-                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 bg-lfredorange border border-white rounded-none md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
+                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 bg-lfredorange border border-white rounded-none md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group {{ isActive('location*') }}"
                                 >
                                     <a href="{{ route("location") }}" class="flex items-center space-x-2">
                                         <span>Location</span>
@@ -233,7 +238,7 @@
                             >
                                 <button
                                     :class="{ 'text-zinc-900 bg-zinc-100' : navigationMenu=='biography', 'hover:text-zinc-900' : navigationMenu!='biography' }"
-                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 bg-lflavenderpurple border border-white rounded-none md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group"
+                                    class="inline-flex items-center justify-between w-full h-auto px-8 py-4 text-sm font-medium transition-colors md:justify-center md:h-10 md:px-4 md:py-2 bg-lflavenderpurple border border-white rounded-none md:w-auto md:w-max hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group {{ isActive('biography*') }}"
                                 >
                                     <a href="{{ route("biography") }}" class="flex items-center space-x-2">
                                         <span>Biography</span>

@@ -29,6 +29,8 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
     mode="random"
     view="hero"
 />
+            <x-custom.df-breadcrumbs />
+
             {{-- <x-custom.hero></x-custom.hero> --}}
             <x-custom.df-heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
 
