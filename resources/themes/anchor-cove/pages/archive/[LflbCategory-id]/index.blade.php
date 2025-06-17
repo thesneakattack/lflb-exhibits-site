@@ -11,12 +11,18 @@ name('archive.topic');
             header("Location: /archive/{$lflbCategory->id}/{$subtopic->id}");
             exit;
         }        
+        $breadcrumbs = [
+            // ['label' => 'Home', 'url' => url('/')],
+            ['label' => 'Topics', 'url' => route('archive')],
+            ['label' => $lflbCategory->title, 'url' => null],
+        ];        
     @endphp
 
     <x-container>
         <div class="relative pt-10">
             <x-custom.df-heading title="{{ $lflbCategory->title }}"
                 description="Choose a subtopic below for articles." align="left" />
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             {{-- @include("theme::partials.archive.subtopics") --}}
             @include("theme::partials.archive.subtopics-loop", ["subtopics" => $subtopics])

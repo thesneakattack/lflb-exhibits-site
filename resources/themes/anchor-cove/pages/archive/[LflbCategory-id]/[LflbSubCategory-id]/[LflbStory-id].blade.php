@@ -4,6 +4,15 @@ name('archive.story');
 ?>
 
 <x-layouts.marketing>
+    @php
+        $breadcrumbs = [
+            // ['label' => 'Home', 'url' => url('/')],
+            ['label' => 'Topics', 'url' => route('archive')],
+            ['label' => $lflbCategory->title, 'url' => url("/archive/{$lflbCategory->id}")],
+            ['label' => $lflbSubCategory->title, 'url' => url("/archive/{$lflbCategory->id}/{$lflbSubCategory->id}")],
+            ['label' => $lflbStory->title, 'url' => null],
+        ];
+    @endphp    
     <x-container>
         <div class="relative py-10">
 
@@ -12,7 +21,7 @@ name('archive.story');
                 description="{{ $lflbStory->description }}"
                 align="left"
             />
-
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             @php
                 $imageAsset = $lflbStory->lflbAssets->where('type', 'IMAGE')->first();
             @endphp

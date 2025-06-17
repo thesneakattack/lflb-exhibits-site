@@ -11,7 +11,10 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
 // $singleTopic = LflbCategory::find(33);
 // $topicStories = $singleTopic->exhibits_stories(); // a Collection of LflbStory models
 // $topicStoriesBySubCategory = $singleTopic->exhibits_stories_by_sub_category(); // Collection keyed by sub‐cat title
-
+$breadcrumbs = [
+    // ['label' => 'Home', 'url' => url('/')],
+    ['label' => 'Topics', 'url' => null],
+];
 ?>
 
 
@@ -29,10 +32,9 @@ $topics = LflbCategory::where('featured', 'TRUE')->whereHas('lflbSubCategories')
     mode="random"
     view="hero"
 />
-            <x-custom.df-breadcrumbs />
-
             {{-- <x-custom.hero></x-custom.hero> --}}
             <x-custom.df-heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             @include("theme::partials.archive.topics")
             @include("theme::partials.archive.topics-loop")
