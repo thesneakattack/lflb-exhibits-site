@@ -33,8 +33,8 @@ $breadcrumbs = [
     view="hero"
 />
             {{-- <x-custom.hero></x-custom.hero> --}}
-            <x-custom.df-heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
             <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
+            <x-custom.df-heading title="From The Archives" description="Check out some of our latest topics below." align="left" />
 
             @include("theme::partials.archive.topics")
             @include("theme::partials.archive.topics-loop")

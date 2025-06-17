@@ -20,9 +20,9 @@ name('archive.topic');
 
     <x-container>
         <div class="relative pt-10">
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             <x-custom.df-heading title="{{ $lflbCategory->title }}"
                 description="Choose a subtopic below for articles." align="left" />
-            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             {{-- @include("theme::partials.archive.subtopics") --}}
             @include("theme::partials.archive.subtopics-loop", ["subtopics" => $subtopics])

@@ -16,12 +16,12 @@ name('archive.story');
     <x-container>
         <div class="relative py-10">
 
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             <x-custom.df-heading
                 title="{{ $lflbStory->title }}"
                 description="{{ $lflbStory->description }}"
                 align="left"
             />
-            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             @php
                 $imageAsset = $lflbStory->lflbAssets->where('type', 'IMAGE')->first();
             @endphp
