@@ -10,7 +10,11 @@ $stories = LflbStory::whereHas('tags', function ($q) {
     $q->where('type', 'main')->where('slug', 'biography');
 })->latest()->paginate(9);
 ?>
-
+@php
+    $breadcrumbs = [
+        ['label' => 'Biography', 'url' => null],
+    ];
+@endphp
 <x-layouts.marketing
     :seo="[
         'title' => 'Biographies',
@@ -19,7 +23,6 @@ $stories = LflbStory::whereHas('tags', function ($q) {
 >
     <x-container>
         <div class="relative pt-5">
-
             {{-- Optional featured hero using TagFilteredContent --}}
             <x-tag-filtered-content
                 model-class="\App\Models\LflbStory"
@@ -28,6 +31,7 @@ $stories = LflbStory::whereHas('tags', function ($q) {
                 mode="random"
                 limit="1"
             />
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             <x-custom.df-heading
                 title="Biographies"
