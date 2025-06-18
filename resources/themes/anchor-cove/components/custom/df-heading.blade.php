@@ -9,7 +9,7 @@
 <div {{ $attributes->class('w-full') }}>
     {{-- Heading bar --}}
     <{{ $level }}
-        class="mt-2 inline-block bg-teal-500 text-white px-4 py-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight leading-snug">
+        class="mt-5 inline-block bg-teal-500 text-white px-4 py-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight leading-snug">
         {!! $title !!}
     </{{ $level }}>
 

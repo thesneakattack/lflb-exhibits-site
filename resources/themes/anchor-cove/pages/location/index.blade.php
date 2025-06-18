@@ -35,7 +35,7 @@ $stories = LflbStory::whereHas('tags', function ($q) {
             <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             <x-custom.df-heading
-                title="Locations"
+                title="Location"
                 description="Discover stories and artifacts tied to local places and landmarks in the community."
                 align="left"
             />

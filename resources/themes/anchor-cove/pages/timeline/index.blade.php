@@ -35,7 +35,7 @@ $stories = LflbStory::whereHas('tags', function ($q) {
             <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             <x-custom.df-heading
-                title="Timelines"
+                title="Timeline"
                 description="Explore events and stories across decades of Lake Forest–Lake Bluff history."
                 align="left"
             />

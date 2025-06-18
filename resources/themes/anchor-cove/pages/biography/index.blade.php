@@ -17,7 +17,7 @@ $stories = LflbStory::whereHas('tags', function ($q) {
 @endphp
 <x-layouts.marketing
     :seo="[
-        'title' => 'Biographies',
+        'title' => 'Biography',
         'description' => 'Our Archive of Biographies',
     ]"
 >
@@ -34,7 +34,7 @@ $stories = LflbStory::whereHas('tags', function ($q) {
             <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             <x-custom.df-heading
-                title="Biographies"
+                title="Biography"
                 description="Learn about the people behind the history."
                 align="left"
             />

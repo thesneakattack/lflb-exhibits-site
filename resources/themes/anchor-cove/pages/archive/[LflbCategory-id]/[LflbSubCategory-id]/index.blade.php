@@ -14,7 +14,7 @@ name('archive.subtopic');
         ];
     @endphp
     <x-container>
-        <div class="relative pt-10">
+        <div class="relative pt-5">
 
         <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
         <x-custom.df-heading

@@ -21,7 +21,7 @@
             mobileViewCheck()
         })
     "
-    class="relative z-30 @if(Request::is('/')){{ 'bg-lfnavy-500' }}@else{{ 'bg-lfnavy-500' }}@endif"
+    class="sticky top-0 z-30 @if(Request::is('/')){{ 'bg-lfnavy-500' }}@else{{ 'bg-lfnavy-500' }}@endif"
 >
     <div class="mx-auto md:px-8 max-w-7xl xl:px-5">
         <div class="relative z-30 flex items-center justify-between h-24 md:space-x-6">
