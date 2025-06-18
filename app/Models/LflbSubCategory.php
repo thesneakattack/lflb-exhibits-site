@@ -48,7 +48,7 @@ class LflbSubCategory extends Model
 {
     // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflbsign_development.lflb_sub_categories';
+    protected $table = 'lflbsign_production.lflb_sub_categories';
 
     public $timestamps = false;
 
@@ -81,7 +81,7 @@ class LflbSubCategory extends Model
     {
         return $this->belongsToMany(
             LflbStory::class,
-            'lflbsign_development.lflb_story_lflb_sub_category',
+            'lflbsign_production.lflb_story_lflb_sub_category',
             'lflb_sub_category_id',
             'lflb_story_id'
         )

@@ -54,7 +54,7 @@ class LflbCategory extends Model
 {
     // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflbsign_development.lflb_categories';
+    protected $table = 'lflbsign_production.lflb_categories';
 
     public $timestamps = false;
 
