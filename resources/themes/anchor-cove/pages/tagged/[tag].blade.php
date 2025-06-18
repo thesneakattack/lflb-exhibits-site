@@ -15,7 +15,7 @@ $stories = LflbStory::whereHas('tags', function ($q) use ($tag) {
 
 <x-layouts.marketing>
     <x-container>
-        <div class="relative pt-10">
+        <div class="relative pt-5">
 
 
             {{-- Page header --}}

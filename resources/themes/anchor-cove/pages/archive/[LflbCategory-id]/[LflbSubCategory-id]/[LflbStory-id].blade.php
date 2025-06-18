@@ -14,7 +14,7 @@ name('archive.story');
         ];
     @endphp    
     <x-container>
-        <div class="relative py-10">
+        <div class="relative py-5">
 
             <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             <x-custom.df-heading
