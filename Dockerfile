@@ -8,4 +8,4 @@ RUN groupmod -g 1003 nginx && \
 RUN chown -R nginx:nginx /var/www/html/
 
 # Use the nginx user
-USER nginx
+USER root
