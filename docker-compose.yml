@@ -2,8 +2,10 @@ version: '3'
 
 services:
   lflbsite:
-    image: tangramor/nginx-php8-fpm:latest
-    user: "${UID}:{GID}"  # 👈 Run container as lflbsign user
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # user: "${UID}:{GID}"  # 👈 Run container as lflbsign user
     labels:
       - traefik.enable=true
       - traefik.http.routers.lflbsite.rule=Host(`lflbsite.webfoundry.dev`)
