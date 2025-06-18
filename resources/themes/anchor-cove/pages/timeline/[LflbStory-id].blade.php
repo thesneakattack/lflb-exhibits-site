@@ -1,12 +1,20 @@
 <?php
 use function Laravel\Folio\name;
-name('story.view');
+name('timeline.story');
 ?>
 
 <x-layouts.marketing>
+    @php
+        $breadcrumbs = [
+            // ['label' => 'Home', 'url' => url('/')],
+            ['label' => 'Timeline', 'url' => route('timeline')],
+            ['label' => $lflbStory->title, 'url' => null],
+        ];
+    @endphp      
     <x-container>
-        <div class="relative py-10">
+        <div class="relative py-5">
 
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             <x-custom.df-heading
                 title="{{ $lflbStory->title }}"
                 description="{{ $lflbStory->description }}"

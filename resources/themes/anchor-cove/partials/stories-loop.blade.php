@@ -6,9 +6,12 @@
             ->where('type', 'TEXT')
             ->sortBy('position')
             ->first();
-            $storyUrl = isset($lflbCategory, $lflbSubCategory)
-                ? "/archive/{$lflbCategory->id}/{$lflbSubCategory->id}/{$story->id}"
-                : "/story/{$story->id}";               
+            $storyUrl = match (true) {
+                isset($lflbCategory, $lflbSubCategory) => "/archive/{$lflbCategory->id}/{$lflbSubCategory->id}/{$story->id}",
+                request()->segment(1) === 'tagged' && isset($tag) => "/tagged/{$tag}/{$story->id}",
+                in_array(request()->segment(1), ['biography', 'timeline', 'location']) => '/' . request()->segment(1) . "/{$story->id}",
+                default => "/story/{$story->id}",
+            };              
     @endphp
         <article id="post-{{ $story->id }}" class="flex flex-col overflow-hidden rounded-lg shadow-lg" typeof="Article">
             <meta property="name" content="{{ $story->title }}" />
