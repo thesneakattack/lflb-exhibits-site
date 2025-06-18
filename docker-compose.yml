@@ -2,6 +2,7 @@ version: '3'
 
 services:
   lflbsite:
+    # image: tangramor/nginx-php8-fpm:latest
     build:
       context: .
       dockerfile: Dockerfile
