@@ -10,7 +10,11 @@ $stories = LflbStory::whereHas('tags', function ($q) {
     $q->where('type', 'main')->where('slug', 'location');
 })->latest()->paginate(9);
 ?>
-
+@php
+    $breadcrumbs = [
+        ['label' => 'Location', 'url' => null],
+    ];
+@endphp
 <x-layouts.marketing
     :seo="[
         'title' => 'Locations',
@@ -28,9 +32,10 @@ $stories = LflbStory::whereHas('tags', function ($q) {
                 mode="random"
                 limit="1"
             />
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             <x-custom.df-heading
-                title="Locations"
+                title="Location"
                 description="Discover stories and artifacts tied to local places and landmarks in the community."
                 align="left"
             />

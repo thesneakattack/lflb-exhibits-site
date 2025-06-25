@@ -35,7 +35,7 @@ class LflbTag extends Model
 {
     // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflbsign_development.lflb_tags';
+    protected $table = 'lflbsign_production.lflb_tags';
 
     public $timestamps = false;
 

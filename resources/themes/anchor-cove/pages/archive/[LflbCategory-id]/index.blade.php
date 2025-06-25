@@ -11,10 +11,16 @@ name('archive.topic');
             header("Location: /archive/{$lflbCategory->id}/{$subtopic->id}");
             exit;
         }        
+        $breadcrumbs = [
+            // ['label' => 'Home', 'url' => url('/')],
+            ['label' => 'Topics', 'url' => route('archive')],
+            ['label' => $lflbCategory->title, 'url' => null],
+        ];        
     @endphp
 
     <x-container>
-        <div class="relative pt-10">
+        <div class="relative pt-5">
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             <x-custom.df-heading title="{{ $lflbCategory->title }}"
                 description="Choose a subtopic below for articles." align="left" />
 

@@ -1,27 +1,26 @@
 <?php
 use function Laravel\Folio\name;
-name('archive.story');
+name('biography.story');
 ?>
 
 <x-layouts.marketing>
     @php
         $breadcrumbs = [
             // ['label' => 'Home', 'url' => url('/')],
-            ['label' => 'Topics', 'url' => route('archive')],
-            ['label' => $lflbCategory->title, 'url' => url("/archive/{$lflbCategory->id}")],
-            ['label' => $lflbSubCategory->title, 'url' => url("/archive/{$lflbCategory->id}/{$lflbSubCategory->id}")],
+            ['label' => 'Biography', 'url' => route('biography')],
             ['label' => $lflbStory->title, 'url' => null],
         ];
-    @endphp    
+    @endphp     
     <x-container>
         <div class="relative py-5">
-
+            
             <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
             <x-custom.df-heading
                 title="{{ $lflbStory->title }}"
                 description="{{ $lflbStory->description }}"
                 align="left"
             />
+
             @php
                 $imageAsset = $lflbStory->lflbAssets->where('type', 'IMAGE')->first();
             @endphp

@@ -41,7 +41,7 @@ class LflbAssetLflbStory extends Pivot
 {
     // protected $connection = 'lflb_exhibits_db';
 
-    protected $table = 'lflbsign_development.lflb_asset_lflb_story';
+    protected $table = 'lflbsign_production.lflb_asset_lflb_story';
 
     public $timestamps = false;
 

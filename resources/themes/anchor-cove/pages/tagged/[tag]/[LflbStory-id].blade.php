@@ -1,18 +1,23 @@
 <?php
 use function Laravel\Folio\name;
-name('archive.story');
-?>
+name('tagged.story');
 
+use App\Models\Tag;
+$tag = request()->route('tag');
+// Paginate all LflbStories tagged as biographies
+$tagModel = Tag::where('slug', $tag)->first();
+?>
+  
 <x-layouts.marketing>
     @php
         $breadcrumbs = [
             // ['label' => 'Home', 'url' => url('/')],
-            ['label' => 'Topics', 'url' => route('archive')],
-            ['label' => $lflbCategory->title, 'url' => url("/archive/{$lflbCategory->id}")],
-            ['label' => $lflbSubCategory->title, 'url' => url("/archive/{$lflbCategory->id}/{$lflbSubCategory->id}")],
+            ['label' => $tagModel->name, 'url' => url("/tagged/{$tagModel->slug}")],
+            // ['label' => $lflbCategory->title, 'url' => url("/archive/{$lflbCategory->id}")],
+            // ['label' => $lflbSubCategory->title, 'url' => url("/archive/{$lflbCategory->id}/{$lflbSubCategory->id}")],
             ['label' => $lflbStory->title, 'url' => null],
         ];
-    @endphp    
+    @endphp 
     <x-container>
         <div class="relative py-5">
 
@@ -22,6 +27,7 @@ name('archive.story');
                 description="{{ $lflbStory->description }}"
                 align="left"
             />
+
             @php
                 $imageAsset = $lflbStory->lflbAssets->where('type', 'IMAGE')->first();
             @endphp

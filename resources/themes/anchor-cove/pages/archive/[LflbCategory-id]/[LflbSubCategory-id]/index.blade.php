@@ -5,10 +5,18 @@ name('archive.subtopic');
 <x-layouts.marketing>
     @php
         $stories = $lflbSubCategory->lflbStories()->paginate(6);
+
+        $breadcrumbs = [
+            // ['label' => 'Home', 'url' => url('/')],
+            ['label' => 'Topics', 'url' => route('archive')],
+            ['label' => $lflbCategory->title, 'url' => url("/archive/{$lflbCategory->id}")],
+            ['label' => $lflbSubCategory->title, 'url' => null],
+        ];
     @endphp
     <x-container>
-        <div class="relative pt-10">
+        <div class="relative pt-5">
 
+        <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
         <x-custom.df-heading
             title="{{ $lflbSubCategory->title }}"
             description="Choose a story below"

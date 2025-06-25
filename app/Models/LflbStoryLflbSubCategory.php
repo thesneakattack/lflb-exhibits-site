@@ -33,7 +33,7 @@ class LflbStoryLflbSubCategory extends Pivot
 {
     // protected $connection = 'lflb_exhibits_db';
     
-    protected $table = 'lflbsign_development.lflb_story_lflb_sub_category';
+    protected $table = 'lflbsign_production.lflb_story_lflb_sub_category';
 
     public $timestamps = false;
 

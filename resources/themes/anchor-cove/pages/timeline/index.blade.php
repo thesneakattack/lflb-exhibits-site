@@ -10,7 +10,11 @@ $stories = LflbStory::whereHas('tags', function ($q) {
     $q->where('type', 'main')->where('slug', 'timeline');
 })->latest()->paginate(9);
 ?>
-
+@php
+    $breadcrumbs = [
+        ['label' => 'Timeline', 'url' => null],
+    ];
+@endphp
 <x-layouts.marketing
     :seo="[
         'title' => 'Timelines',
@@ -28,9 +32,10 @@ $stories = LflbStory::whereHas('tags', function ($q) {
                 mode="random"
                 limit="1"
             />
+            <x-custom.df-breadcrumbs :breadcrumbs="$breadcrumbs" />
 
             <x-custom.df-heading
-                title="Timelines"
+                title="Timeline"
                 description="Explore events and stories across decades of Lake Forest–Lake Bluff history."
                 align="left"
             />
