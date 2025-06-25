@@ -63,10 +63,10 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             // ->discoverWidgets(in: app_path('BezhanSalleh\FilamentGoogleAnalytics\Widgets'), for: 'BezhanSalleh\\FilamentGoogleAnalytics\\Widgets')
             ->widgets([
-                Widgets\WaveInfoWidget::class,
+                // Widgets\WaveInfoWidget::class,
                 Widgets\WelcomeWidget::class,
-                Widgets\UsersWidget::class,
-                Widgets\PostsPagesWidget::class,
+                // Widgets\UsersWidget::class,
+                // Widgets\PostsPagesWidget::class,
                 ...$this->dynamicWidgets,
 
                 // Google Analytics Widgets that are available here: https://filamentphp.com/plugins/bezhansalleh-google-analytics
@@ -113,7 +113,7 @@ class AdminPanelProvider extends PanelProvider
             \Config::set('filament-google-analytics.most_visited_pages.filament_dashboard', true);
             \Config::set('filament-google-analytics.top_referrers_list.filament_dashboard', true);
         } else {
-            $this->dynamicWidgets = [Widgets\AnalyticsPlaceholderWidget::class];
+            // $this->dynamicWidgets = [Widgets\AnalyticsPlaceholderWidget::class];
         }
     }
 }

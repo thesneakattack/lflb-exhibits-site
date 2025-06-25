@@ -10,11 +10,11 @@
                 <h2
                     class="grid flex-1 text-base font-semibold leading-6 text-gray-950 dark:text-white"
                 >
-                    Welcome to the Wave Admin
+                    Welcome to the {{ setting('site.title') }} Admin
                 </h2>
 
                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                    You are currently using the Tallstack theme
+                    {{-- You are currently using the Tallstack theme --}}
                 </p>
             </div>
 

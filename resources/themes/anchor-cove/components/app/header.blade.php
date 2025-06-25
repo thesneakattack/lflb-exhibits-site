@@ -20,7 +20,7 @@
             <div x-data="{ open: false }" class="flex h-full md:flex-1">
                 <nav class="flex-1 hidden h-full space-x-4 lg:space-x-5 xl:space-x-8 md:flex">
                     <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none @if(Request::is('dashboard')){{ 'text-zinc-900' }}@else{{ 'text-zinc-500 hover:text-zinc-900' }}@endif">Dashboard</a>
-                    <div x-data="{ dropdown: false }" @mouseenter="dropdown = true" @mouseleave="dropdown=false" @click.away="dropdown=false" class="relative inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out border-b-2 border-transparent cursor-pointer text-zinc-500 hover:text-zinc-700 hover:border-zinc-300 focus:outline-none focus:text-zinc-700 focus:border-zinc-300">
+                    {{-- <div x-data="{ dropdown: false }" @mouseenter="dropdown = true" @mouseleave="dropdown=false" @click.away="dropdown=false" class="relative inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out border-b-2 border-transparent cursor-pointer text-zinc-500 hover:text-zinc-700 hover:border-zinc-300 focus:outline-none focus:text-zinc-700 focus:border-zinc-300">
                         <span>Resources</span>
                         <svg class="w-5 h-5 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -67,7 +67,7 @@
                     </div>
                     
                     <a href="https://devdojo.com/questions" target="_blank" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out text-zinc-500 hover:text-zinc-700 focus:outline-none focus:text-zinc-700 focus:border-zinc-300">Questions</a>
-                    <a href="/changelog" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out text-zinc-500 hover:text-zinc-700 focus:outline-none focus:text-zinc-700 focus:border-zinc-300">Changelog</a>
+                    <a href="/changelog" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out text-zinc-500 hover:text-zinc-700 focus:outline-none focus:text-zinc-700 focus:border-zinc-300">Changelog</a> --}}
                 </nav>
 
                 <div class="flex lg:ml-6 sm:items-center">
@@ -95,7 +95,7 @@
                                 Dashboard
                             </div>
                         </a>
-                        <a href="https://wave.devdojo.com/docs" target="_blank" class="flex items-center p-3 -mx-2 space-x-3 transition duration-150 ease-in-out rounded-md hover:bg-zinc-50">
+                        {{-- <a href="https://wave.devdojo.com/docs" target="_blank" class="flex items-center p-3 -mx-2 space-x-3 transition duration-150 ease-in-out rounded-md hover:bg-zinc-50">
                             <x-phosphor-book-duotone class="flex-shrink-0 w-6 h-6 text-blue-600" />
                             <div class="text-base font-medium leading-6 text-zinc-900">
                                 Documentation
@@ -124,7 +124,7 @@
                             <div class="text-base font-medium leading-6 text-zinc-900">
                                 Changelog
                             </div>
-                        </a>
+                        </a> --}}
                     </nav>
                 </div>
             </div>
